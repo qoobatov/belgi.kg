@@ -1,13 +1,14 @@
-
 import React, { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import axios from "axios";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Checkbox } from "antd";
 
 function Login() {
   const [error, setError] = useState(false);
   const navigation = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies(["rememberMe"]);
 
   const onFinish = async (values) => {
     try {
@@ -18,6 +19,15 @@ function Login() {
           person.email === values.email && person.password === values.pass
       );
       if (user) {
+        if (values.rememberMe) {
+          // сохраняем куку на 7 дней
+          const expires = new Date();
+          expires.setDate(expires.getDate() + 7);
+          setCookie("rememberMe", true, { path: "/", expires });
+        } else {
+          // удаляем куку
+          removeCookie("rememberMe", { path: "/" });
+        }
         navigation("/page");
       } else {
         setError(true);
@@ -72,7 +82,11 @@ function Login() {
           >
             <Input.Password className="input-password" placeholder="Пароль" />
           </Form.Item>
-
+          <Form.Item>
+            <Checkbox name="checkbox" className="login-remember-me">
+              Запомнить меня
+            </Checkbox>
+          </Form.Item>
           <Form.Item>
             <Button
               type="primary"
