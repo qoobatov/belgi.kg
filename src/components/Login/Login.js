@@ -1,47 +1,34 @@
-import React, { useEffect } from "react";
+
+import React, { useState } from "react";
 import "./Login.css";
-import { Button, Form, Input, Checkbox } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { authUsers } from "../api/api";
+import axios from "axios";
+import { Form, Input, Button } from "antd";
 
 function Login() {
-  const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const [users, setUsers] = useState();
-  const [stateUsers, setStateUsers] = useState({
-    identifier: "",
-    password: "",
-  });
+  const navigation = useNavigate();
 
-  useEffect(() => {
-    authUsers().then((res) => setUsers(res));
-  }, []);
-
-  const onFinish = () => {
-    users &&
-      users.map((data) => {
-        console.log(data);
-        if (
-          data.email === stateUsers.identifier &&
-          data.pass === stateUsers.password
-        ) {
-          navigate("/mytrades");
-        }
-      });
+  const onFinish = async (values) => {
+    try {
+      const response = await axios.get(`http://localhost:1337/api/users`);
+      const users = response.data;
+      const user = users.find(
+        (person) =>
+          person.email === values.email && person.password === values.pass
+      );
+      if (user) {
+        navigation("/page");
+      } else {
+        setError(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
-  };
-
-  const changeHandle = (e) => {
-    setStateUsers((stateUsers) => {
-      return {
-        ...stateUsers,
-        [e.target.name]: e.target.value,
-      };
-    });
   };
 
   return (
@@ -63,20 +50,15 @@ function Login() {
             </span>
           )}
           <Form.Item
-            name="identifier"
+            name="email"
             rules={[
               {
                 required: true,
-                message: "Пожалуйста, введите логин",
+                message: "Пожалуйста, введите email",
               },
             ]}
           >
-            <Input
-              className="input-login"
-              placeholder="email"
-              onChange={changeHandle}
-              name="identifier"
-            />
+            <Input className="input-login" placeholder="Email" />
           </Form.Item>
 
           <Form.Item
@@ -88,17 +70,7 @@ function Login() {
               },
             ]}
           >
-            <Input.Password
-              className="input-password"
-              placeholder="Пароль"
-              onChange={changeHandle}
-              name="password"
-            />
-          </Form.Item>
-          <Form.Item>
-            <Checkbox name="checkbox" className="login-remember-me">
-              Запомнить меня
-            </Checkbox>
+            <Input.Password className="input-password" placeholder="Пароль" />
           </Form.Item>
 
           <Form.Item>
