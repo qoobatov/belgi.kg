@@ -63,6 +63,6 @@
   margin-bottom: 10px;
 }
 
-.ant-form .login-remember-me {
+.ant-form lable {
   color: var(--tg-theme-text-color);
 }
