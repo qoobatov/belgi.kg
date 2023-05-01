@@ -17,7 +17,7 @@
 
 .bayer-services-content h3 {
   text-align: center;
-  /* margin-bottom: 10px; */
+  margin-bottom: 20px;
 }
 
 #bayer-services-input-text {
@@ -60,4 +60,10 @@
   border: none;
   cursor: pointer;
   color: var(--tg-theme-text-color);
+}
+
+.ant-modal-content {
+  position: absolute;
+  top: 117px;
+  left: 94px;
 }

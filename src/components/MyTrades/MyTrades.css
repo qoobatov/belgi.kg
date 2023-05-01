@@ -44,3 +44,18 @@
   border-radius: 5px;
   padding: 0px 10px;
 }
+.ant-btn-default {
+  display: none;
+}
+
+.ant-modal-content {
+  width: 330px;
+  height: 150px;
+  padding: 10px 5px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
