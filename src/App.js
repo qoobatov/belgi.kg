@@ -5,6 +5,7 @@ import MyTrades from "./components/MyTrades/MyTrades";
 import TradeList from "./components/TradeList/TradeList";
 import NewOrder from "./components/NewOrder/NewOrder";
 import BayerServices from "./components/BayerServices/BayerServices";
+import Register from "./components/Register/Register";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/trade-list" element={<TradeList />} />
             <Route path="/new-order" element={<NewOrder />} />
             <Route path="/bayer-services" element={<BayerServices />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </Router>
       </div>

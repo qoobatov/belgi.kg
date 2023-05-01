@@ -12,7 +12,7 @@
 }
 
 .login-content {
-  width: 330px;
+  width: 335px;
   max-height: 650px;
   padding: 10px 5px;
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
@@ -45,7 +45,13 @@
   background-color: #1976d2;
   border-radius: 5px;
   padding: 0px 10px;
+  margin-bottom: 10px;
 }
+
+.login-registr {
+  display: flex;
+}
+
 .ant-form-item {
   margin-bottom: 0;
 }
@@ -61,6 +67,6 @@
   margin-bottom: 10px;
 }
 
-.ant-form .login-remember-me{
+.ant-form .login-remember-me {
   color: var(--tg-theme-text-color);
 }

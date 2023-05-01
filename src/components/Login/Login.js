@@ -11,7 +11,7 @@ function Login() {
   const [cookies, setCookie, removeCookie] = useCookies(["remember"]);
 
   const onFinish = async (values) => {
-        navigation("/my-trades");
+    navigation("/my-trades");
 
     // try {
     //   const response = await axios.get(`http://localhost:1337/api/users`);
@@ -99,6 +99,10 @@ function Login() {
             </Button>
           </Form.Item>
         </Form>
+        <div className="login-registr">
+          <span>У вас ещё нет аккаунта?</span>
+          <a href="/register">Зарегистрироваться</a>
+        </div>
       </div>
     </div>
   );
