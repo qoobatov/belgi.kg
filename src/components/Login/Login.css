@@ -12,7 +12,7 @@
 }
 
 .login-content {
-  width: 335px;
+  width: 350px;
   max-height: 650px;
   padding: 10px 5px;
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
@@ -48,9 +48,17 @@
   margin-bottom: 10px;
 }
 
-.login-registr {
+.login-register-block{
   display: flex;
+  justify-content: space-between;
 }
+
+.login-btn-register{
+  text-decoration: underline;
+  color: #1976d2;
+  cursor: pointer;
+}
+
 
 .ant-form-item {
   margin-bottom: 0;

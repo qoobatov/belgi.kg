@@ -10,6 +10,11 @@ function Login() {
   const navigation = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies(["remember"]);
 
+  const onRegister = ()=>{
+    navigation("/register");
+
+  }
+
   const onFinish = async (values) => {
     navigation("/my-trades");
 
@@ -99,9 +104,9 @@ function Login() {
             </Button>
           </Form.Item>
         </Form>
-        <div className="login-registr">
+        <div className="login-register-block">
           <span>У вас ещё нет аккаунта?</span>
-          <a href="/register">Зарегистрироваться</a>
+          <span onClick={onRegister} className="login-btn-register">Зарегистрироваться</span>
         </div>
       </div>
     </div>
