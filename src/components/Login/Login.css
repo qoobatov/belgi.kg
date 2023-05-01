@@ -26,6 +26,8 @@
   margin-bottom: 10px;
   letter-spacing: 25px;
   text-align: center;
+  color: var(--tg-theme-text-color);
+
 }
 
 .input-login {
@@ -63,3 +65,7 @@
   /* предупреждение о пустоте */
   margin-bottom: 10px;
 }
+
+/* .ant-form .login-remember-me{
+    color: red;
+} */
