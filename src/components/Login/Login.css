@@ -60,3 +60,7 @@
   /* предупреждение о пустоте */
   margin-bottom: 10px;
 }
+
+.ant-form .login-remember-me{
+  color: var(--tg-theme-text-color);
+}
