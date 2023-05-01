@@ -8,7 +8,7 @@ import { Form, Input, Button, Checkbox } from "antd";
 function Login() {
   const [error, setError] = useState(false);
   const navigation = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies(["rememberMe"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["remember"]);
 
   const onFinish = async (values) => {
     try {
@@ -19,14 +19,14 @@ function Login() {
           person.email === values.email && person.password === values.pass
       );
       if (user) {
-        if (values.rememberMe) {
+        if (values.remember) {
           // сохраняем куку на 7 дней
           const expires = new Date();
           expires.setDate(expires.getDate() + 7);
-          setCookie("rememberMe", true, { path: "/", expires });
+          setCookie("remember", true, { path: "/", expires });
         } else {
           // удаляем куку
-          removeCookie("rememberMe", { path: "/" });
+          removeCookie("remember", { path: "/" });
         }
         navigation("/page");
       } else {
@@ -83,7 +83,7 @@ function Login() {
             <Input.Password className="input-password" placeholder="Пароль" />
           </Form.Item>
           <Form.Item>
-            <Checkbox name="checkbox" className="login-remember-me">
+            <Checkbox name="remember" className="login-remember-me">
               Запомнить меня
             </Checkbox>
           </Form.Item>
