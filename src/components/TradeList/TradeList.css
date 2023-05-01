@@ -1,0 +1,47 @@
+.trade-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.trade-list-content {
+  width: 330px;
+  max-height: 850px;
+  padding: 10px 5px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.trade-list-content h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.trade-more-info-container{
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+.trade-more-info{
+    margin-bottom: 10px;
+}
+
+.btn-trade-list-back {
+  height: 40px;
+  font-size: 18px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+
+.btn-trade-list-shopping {
+    height: 40px;
+    font-size: 18px;
+    background-color: #1976d2;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}

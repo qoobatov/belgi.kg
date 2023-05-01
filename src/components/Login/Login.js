@@ -11,30 +11,32 @@ function Login() {
   const [cookies, setCookie, removeCookie] = useCookies(["remember"]);
 
   const onFinish = async (values) => {
-    try {
-      const response = await axios.get(`http://localhost:1337/api/users`);
-      const users = response.data;
-      const user = users.find(
-        (person) =>
-          person.email === values.email && person.password === values.pass
-      );
-      if (user) {
-        if (values.remember) {
-          // сохраняем куку на 7 дней
-          const expires = new Date();
-          expires.setDate(expires.getDate() + 7);
-          setCookie("remember", true, { path: "/", expires });
-        } else {
-          // удаляем куку
-          removeCookie("remember", { path: "/" });
-        }
-        navigation("/page");
-      } else {
-        setError(true);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+        navigation("/my-trades");
+
+    // try {
+    //   const response = await axios.get(`http://localhost:1337/api/users`);
+    //   const users = response.data;
+    //   const user = users.find(
+    //     (person) =>
+    //       person.email === values.email && person.password === values.pass
+    //   );
+    //   if (user) {
+    //     if (values.remember) {
+    //       // сохраняем куку на 7 дней
+    //       const expires = new Date();
+    //       expires.setDate(expires.getDate() + 7);
+    //       setCookie("remember", true, { path: "/", expires });
+    //     } else {
+    //       // удаляем куку
+    //       removeCookie("remember", { path: "/" });
+    //     }
+    //     navigation("/my-trades");
+    //   } else {
+    //     setError(true);
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const onFinishFailed = (errorInfo) => {

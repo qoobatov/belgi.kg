@@ -1,0 +1,52 @@
+.new-order-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.new-order-content {
+  width: 330px;
+  max-height: 850px;
+  padding: 10px 5px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.new-order-content h3 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.new-order-btn-group {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.btn-new-order-bulk-buy {
+  height: 40px;
+  font-size: 18px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+
+.btn-new-product {
+  height: 40px;
+  font-size: 18px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+.btn-new-order-back {
+  height: 40px;
+  font-size: 18px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
