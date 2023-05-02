@@ -22,9 +22,7 @@ function Login() {
     try {
       const response = await axios.get(`http://localhost:1337/api/users`);
       const users = response.data;
-      const user = users.find(
-        (person) => person.email === values.email
-      );
+      const user = users.find((person) => person.email === values.email);
       if (user) {
         if (values.remember) {
           // сохраняем id в локальном хранилище
