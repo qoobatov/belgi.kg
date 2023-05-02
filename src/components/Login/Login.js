@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -10,38 +10,50 @@ function Login() {
   const navigation = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies(["remember"]);
 
-  const onRegister = ()=>{
+  const onRegister = () => {
     navigation("/register");
+  };
 
-  }
+  useEffect(() => {
+    if (localStorage.getItem("id")) {
+      navigation("/my-trades");
+      // setInterval(() => {
+      //   localStorage.clear();
+      // }, 7776000000);
+    }
+  }, []);
+
+  // let days = Math.floor(7776000000 / (1000 * 60 * 60 * 24));
+  // console.log(days);
 
   const onFinish = async (values) => {
-    navigation("/my-trades");
-
-    // try {
-    //   const response = await axios.get(`http://localhost:1337/api/users`);
-    //   const users = response.data;
-    //   const user = users.find(
-    //     (person) =>
-    //       person.email === values.email && person.password === values.pass
-    //   );
-    //   if (user) {
-    //     if (values.remember) {
-    //       // сохраняем куку на 7 дней
-    //       const expires = new Date();
-    //       expires.setDate(expires.getDate() + 7);
-    //       setCookie("remember", true, { path: "/", expires });
-    //     } else {
-    //       // удаляем куку
-    //       removeCookie("remember", { path: "/" });
-    //     }
-    //     navigation("/my-trades");
-    //   } else {
-    //     setError(true);
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const response = await axios.get(`http://localhost:1337/api/users`);
+      const users = response.data;
+      users.find((person) => {
+        // eslint-disable-next-line no-unused-expressions
+        if (person.email === values.email && person.password === values.pass) {
+          localStorage.setItem("id", person.id);
+          navigation("/my-trades");
+        }
+      });
+      // if (user) {
+      // if (values.remember) {
+      //   // сохраняем куку на 7 дней
+      //   const expires = new Date();
+      //   expires.setDate(expires.getDate() + 7);
+      //   setCookie("remember", true, { path: "/", expires });
+      // } else {
+      //   // удаляем куку
+      //   removeCookie("remember", { path: "/" });
+      // }
+      // navigation("/my-trades");
+      // } else {
+      // setError(true);
+      // }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -106,7 +118,9 @@ function Login() {
         </Form>
         <div className="login-register-block">
           <span>У вас ещё нет аккаунта?</span>
-          <span onClick={onRegister} className="login-btn-register">Зарегистрироваться</span>
+          <span onClick={onRegister} className="login-btn-register">
+            Зарегистрироваться
+          </span>
         </div>
       </div>
     </div>

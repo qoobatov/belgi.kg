@@ -3,10 +3,16 @@ import "./BayerServices.css";
 import { Modal } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addBulkProduct } from "../api/api";
 
 function BayerServices() {
   const [showNewOrder, setshowNewOrder] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [bulk, setBulk] = useState({
+    ProductName: "",
+    ProductDescription: "",
+    users_permissions_users: "",
+  });
 
   const navigate = useNavigate();
 
@@ -27,29 +33,50 @@ function BayerServices() {
     setIsModalOpen(false);
   };
 
+  const changeHandler = (e) => {
+    setBulk((bulk) => {
+      return {
+        ...bulk,
+        [e.target.name]: e.target.value,
+        users_permissions_users: localStorage.getItem("id"),
+      };
+    });
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    addBulkProduct(bulk);
+  };
+
   return (
     <>
       <div className="bayer-services-container">
         <div className="bayer-services-content">
           <h3> Оптовые покупки:</h3>
-          <form>
+          <form onSubmit={submit}>
             <label htmlFor="bayer-services-input-text">
               Что вы хотите купить?
-              <input type="text" id="bayer-services-input-text" name="text" />
+              <input
+                type="text"
+                id="bayer-services-input-text"
+                name="ProductName"
+                onChange={changeHandler}
+              />
             </label>
             <label htmlFor="bayer-services-input-textarea">
               Описание товара:
               <textarea
-                name="textarea"
+                name="ProductDescription"
                 id="bayer-services-input-textarea"
                 cols="30"
                 rows="7"
+                onChange={changeHandler}
               ></textarea>
             </label>
             <button
               className="btn-bayer-services-submit"
               type="submit"
-              onClick={showModal}
+              // onClick={showModal}
             >
               Отправить
             </button>
