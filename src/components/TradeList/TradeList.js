@@ -40,12 +40,12 @@ function TradeList() {
               bulkproducts.map((data, index) => {
                 return (
                   <div key={index + 1} className="trade-more-info">
-                    <div>
+                    <div className="trade-list-items-block">
                       <span>{data.ProductName}</span>
-                    </div>
-                    <div>
                       <span>{data.ProductDescription}</span>
                     </div>
+                  
+                    
                     <button onClick={() => deleteBulk(data.id)}>&#215;</button>
                   </div>
                 );
