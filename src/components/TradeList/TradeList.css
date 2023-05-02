@@ -65,6 +65,7 @@
   border-radius: 25px;
   background-color: #1976d2;
   cursor: pointer;
+  border: none;
 }
 th {
   overflow: hidden;
