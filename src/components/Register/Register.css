@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.register-content {
+  width: 350px;
+  max-height: 850px;
+  padding: 10px 5px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.register-content h3 {
+  text-align: center;
+}
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-input {
+  margin-bottom: 10px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+
+#offert{
+    margin-bottom: 20px;
+}
+
+.register-btn {
+  height: 40px;
+  font-size: 18px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  padding: 0px 10px;
+  border: none;
+  cursor: pointer;
+  color: var(--tg-theme-text-color);
+}
