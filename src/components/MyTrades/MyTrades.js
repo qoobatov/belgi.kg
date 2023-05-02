@@ -20,6 +20,10 @@ function MyTrades() {
   const handleClickShopping = () => {
     window.open("https://belgi.kg/#/shoppingtour", "_blank");
   };
+  const handleClickExit = () => {
+    navigate("/belgi.kg");
+    localStorage.removeItem('id')
+  };
 
   return (
     <>
@@ -55,6 +59,7 @@ function MyTrades() {
           <Button
             type="primary"
             className="btn-mytrades-exit"
+            onClick={handleClickExit}
           >
             Выйти
           </Button>
