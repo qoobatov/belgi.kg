@@ -16,3 +16,9 @@ export function loginUser(data) {
 export function addBulkProduct(data) {
   return strapiApi.post("bulk-buyings", { json: { data: data } });
 }
+export function getBulkProduct(id) {
+  return strapiApi.get(`users/${id}?populate=*`).json();
+}
+export function deleteBulkProduct(id) {
+  return strapiApi.delete(`bulk-buyings/${id}`);
+}

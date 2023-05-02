@@ -52,6 +52,12 @@ function MyTrades() {
           >
             Шоппинг тур
           </Button>
+          <Button
+            type="primary"
+            className="btn-mytrades-exit"
+          >
+            Выйти
+          </Button>
           {showTradeList && navigate("/trade-list")}
           {showNewOrder && navigate("/new-order")}
         </div>
