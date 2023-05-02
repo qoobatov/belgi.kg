@@ -34,19 +34,30 @@ function TradeList() {
     <>
       <div className="trade-list-container">
         <div className="trade-list-content">
-          <h3>Ваши сделки:</h3>
+          <h3>Ваши оптовые заказы:</h3>
           <div className="trade-more-info-container">
             {bulkproducts &&
               bulkproducts.map((data, index) => {
                 return (
-                  <div key={index + 1} className="trade-more-info">
-                    <div className="trade-list-items-block">
-                      <span>{data.ProductName}</span>
-                      <span>{data.ProductDescription}</span>
+                  <div key={index + 1} className="trade-list-items-block">
+                    <table>
+                      <tr>
+                        <th className="th-product-name-title">Название</th>
+                        <th>Описание товара</th>
+                      </tr>
+                      <tr>
+                        <td className="td-product-name">{data.ProductName}</td>
+                        <td>{data.ProductDescription}</td>
+                      </tr>
+                    </table>
+                    <div className="delete-trade-list-item-relative">
+                      <button
+                        className="delete-trade-list-item"
+                        onClick={() => deleteBulk(data.id)}
+                      >
+                        &#215;
+                      </button>
                     </div>
-                  
-                    
-                    <button onClick={() => deleteBulk(data.id)}>&#215;</button>
                   </div>
                 );
               })}

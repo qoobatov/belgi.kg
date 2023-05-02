@@ -46,7 +46,6 @@
   margin-bottom: 10px;
   border: none;
   cursor: pointer;
-  color: var(--tg-theme-text-color);
 }
 
 .btn-bayer-services-back {
@@ -59,7 +58,6 @@
   margin-bottom: 10px;
   border: none;
   cursor: pointer;
-  color: var(--tg-theme-text-color);
 }
 
 .ant-modal-content {

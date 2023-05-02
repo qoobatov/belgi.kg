@@ -8,6 +8,7 @@ import { addBulkProduct } from "../api/api";
 function BayerServices() {
   const [showNewOrder, setshowNewOrder] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [status, setStatus] = useState("");
   const [bulk, setBulk] = useState({
     ProductName: "",
     ProductDescription: "",
@@ -46,6 +47,36 @@ function BayerServices() {
   const submit = (e) => {
     e.preventDefault();
     addBulkProduct(bulk);
+
+    const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
+    const chat_id = "-1001979905864"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
+    // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
+    const url =
+      "https://api.telegram.org/bot" +
+      token +
+      "/sendMessage?chat_id=" +
+      chat_id +
+      "&parse_mode=html&text=" +
+      encodeURIComponent(
+        "Наименование товара: " +
+          bulk.ProductName +
+          "\nОписание товара: " +
+          bulk.ProductDescription +
+          "\nСсылка на сделки: " +
+          "google.com"
+      );
+    try {
+      const response = fetch(url);
+      const data = response.json();
+      if (data.ok) {
+        setStatus("Ваша заявка отправлена");
+      } else {
+        setStatus("Ошибка");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("Ошибка");
+    }
   };
 
   return (
