@@ -3,6 +3,14 @@
   box-sizing: border-box;
 }
 
+input {
+  color: black;
+}
+
+option {
+  color: black;
+}
+
 body {
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
