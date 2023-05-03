@@ -13,6 +13,7 @@ function BayerServices() {
     ProductName: "",
     ProductDescription: "",
     users_permissions_users: "",
+    tg: "",
   });
 
   const navigate = useNavigate();
@@ -47,28 +48,16 @@ function BayerServices() {
   const submit = (e) => {
     e.preventDefault();
     addBulkProduct(bulk);
+    localStorage.setItem("tg", bulk.tg);
 
     const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
     const chat_id = "-1001979905864"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
     // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
-    // const url =
-    //   "https://api.telegram.org/bot" +
-    //   token +
-    //   "/sendMessage?chat_id=" +
-    //   chat_id +
-    //   "&parse_mode=html&text=" +
-    //   encodeURIComponent(
-    //     "Наименование товара: " +
-    //       bulk.ProductName +
-    //       "\nОписание товара: " +
-    //       bulk.ProductDescription +
-    //       "\nСсылка на сделки: " +
-    //       "google.com"
-    //   );
+    
 
     const button = {
-      text: "Перейти к сделкам",
-      url: "https://t.me/Ani_Trixter",
+      text: "test btn",
+      url: `https://t.me/${localStorage.getItem("tg")}`,
     };
 
     // Создаем объект клавиатуры и добавляем нашу кнопку в нее
@@ -96,8 +85,7 @@ function BayerServices() {
       "&reply_markup=" +
       encodeURIComponent(keyboardJSON);
 
-    // Отправляем запрос на API Телеграма с нашей клавиатурой и кнопкой
-    // fetch(url);
+
 
     try {
       const response = fetch(url);
@@ -111,6 +99,8 @@ function BayerServices() {
       console.error(error);
       setStatus("Ошибка");
     }
+
+    localStorage.removeItem("tg");
   };
 
   return (
@@ -137,6 +127,15 @@ function BayerServices() {
                 rows="7"
                 onChange={changeHandler}
               ></textarea>
+            </label>
+            <label htmlFor="bayer-services-input-text">
+              Укажите свой телеграм аккаунт без "@"
+              <input
+                type="text"
+                id="bayer-services-input-text"
+                name="tg"
+                onChange={changeHandler}
+              />
             </label>
             <button
               className="btn-bayer-services-submit"

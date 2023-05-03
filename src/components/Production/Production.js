@@ -1,5 +1,6 @@
 import React from "react";
 import "./Production.css";
+import { Button} from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,13 +32,20 @@ function Production() {
 
   const onClickBackNewOrder = () => {
     setshowNewOrder(true);
-    navigate("/neworder");
+    navigate("/new-order");
   };
 
   return (
     <>
       <div>
-        <h1>Production</h1>
+        <Button
+          type="primary"
+          className="btn-production-back"
+          onClick={onClickBackNewOrder}
+        >
+          назад
+        </Button>
+        {showNewOrder && navigate("/new-order")}
       </div>
     </>
   );
