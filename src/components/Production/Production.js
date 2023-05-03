@@ -37,35 +37,38 @@ function Production() {
   };
 
   const onFinish = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
     const chat_id = "-1001950653999"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
     // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
-    const url =
-      "https://api.telegram.org/bot" +
-      token +
-      "/sendMessage?chat_id=" +
-      chat_id +
-      "&parse_mode=html&text=" +
-      encodeURIComponent(
-        "Наименование заказа: " +
-          formValues.nameOrder +
-        //   "\nОписание заказа: " +
-        //   formValues.desc +
-        //   "\nКатегория: " +
-        //   formValues.category +
-        //   "\nКоличество: " +
-        //   formValues.quantity +
-        //   "\nУсловия оплаты: " +
-        //   formValues.payment +
-        //   "\nДополнительные услуги: " +
-        //   formValues.moreServices +
-        //   "\nПримечания и комментарии: " +
-        //   formValues.comments +
-          "\nСсылка на сделки: " +
-          "google.com"
-      );
+    const button = {
+        text: "Принять заказ",
+        url: `https://t.me/${localStorage.getItem("tg")}`,
+      };
+  
+      // Создаем объект клавиатуры и добавляем нашу кнопку в нее
+      const inlineKeyboard = {
+        inline_keyboard: [[button]],
+      };
+  
+      // Преобразуем объект клавиатуры в JSON строку
+      const keyboardJSON = JSON.stringify(inlineKeyboard);
+  
+      // Формируем ссылку на API Телеграма с использованием нашей клавиатуры
+      const url =
+        "https://api.telegram.org/bot" +
+        token +
+        "/sendMessage?chat_id=" +
+        chat_id +
+        "&parse_mode=html&text=" +
+        encodeURIComponent(
+          "Наименование товара: " +
+          formValues.nameOrder+
+            "\n"
+        ) +
+        "&reply_markup=" +
+        encodeURIComponent(keyboardJSON);
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -85,7 +88,7 @@ function Production() {
       <div className="production-container">
         <div className="production-content">
           <h3>Производство:</h3>
-          <form className="form-production" onFinish={onFinish}>
+          <form className="form-production">
             
             <label>
               Наименование заказа:
@@ -97,22 +100,22 @@ function Production() {
               />
             </label>
 
-            <Button
-              type="primary"
-              htmlType="submit"
+            <button
+              type="submit"
               className="btn-production-send-form"
               style={{ marginBottom: "10px" }}
+              onClick={onFinish}
             >
               отправить в канал
-            </Button>
+            </button>
           </form>
-          <Button
+          <button
             type="primary"
             className="btn-production-back"
             onClick={onClickBackNewOrder}
           >
             назад
-          </Button>
+          </button>
           {showNewOrder && navigate("/new-order")}
         </div>
       </div>
