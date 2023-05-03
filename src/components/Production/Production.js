@@ -43,32 +43,34 @@ function Production() {
     const chat_id = "-1001950653999"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
     // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
     const button = {
-        text: "Принять заказ",
-        url: `https://t.me/${localStorage.getItem("tg")}`,
-      };
-  
-      // Создаем объект клавиатуры и добавляем нашу кнопку в нее
-      const inlineKeyboard = {
-        inline_keyboard: [[button]],
-      };
-  
-      // Преобразуем объект клавиатуры в JSON строку
-      const keyboardJSON = JSON.stringify(inlineKeyboard);
-  
-      // Формируем ссылку на API Телеграма с использованием нашей клавиатуры
-      const url =
-        "https://api.telegram.org/bot" +
-        token +
-        "/sendMessage?chat_id=" +
-        chat_id +
-        "&parse_mode=html&text=" +
-        encodeURIComponent(
-          "Наименование товара: " +
-          formValues.nameOrder+
-            "\n"
-        ) +
-        "&reply_markup=" +
-        encodeURIComponent(keyboardJSON);
+      text: "Принять заказ",
+      url: `https://t.me/${localStorage.getItem("tg")}`,
+    };
+
+    // Создаем объект клавиатуры и добавляем нашу кнопку в нее
+    const inlineKeyboard = {
+      inline_keyboard: [[button]],
+    };
+
+    // Преобразуем объект клавиатуры в JSON строку
+    const keyboardJSON = JSON.stringify(inlineKeyboard);
+
+    // Формируем ссылку на API Телеграма с использованием нашей клавиатуры
+    const url =
+      "https://api.telegram.org/bot" +
+      token +
+      "/sendMessage?chat_id=" +
+      chat_id +
+      "&parse_mode=html&text=" +
+      encodeURIComponent(
+        "Наименование товара: " +
+          formValues.nameOrder +
+          "\nОписание товара: " +
+          formValues.category +
+          "\n"
+      ) +
+      "&reply_markup=" +
+      encodeURIComponent(keyboardJSON);
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -89,17 +91,50 @@ function Production() {
         <div className="production-content">
           <h3>Производство:</h3>
           <form className="form-production">
-            
             <label>
               Наименование заказа:
               <input
+                id="production-inputs"
                 className="production-nameOrder"
-                placeholder="Например: Пошив блузки"
+                placeholder="Н: Пошив блузки"
                 name="nameOrder"
                 onChange={onChangeSelected}
               />
             </label>
-
+            <label className="production-lable-block">
+              Выберите категорию:
+              <select
+                id="production-inputs"
+                className="production-category"
+                name="category"
+                onChange={onChangeSelected}
+              >
+                <option value="Женская одежда">Женская одежда</option>
+                <option value="Мужская одежда">Мужская одежда</option>
+                <option value="Детская одежда">Детская одежда</option>
+                <option value="Спецодежда">Спецодежда</option>
+              </select>
+            </label>
+            <label className="production-lable-block">
+              Описание заказа:
+              <input
+                id="production-inputs"
+                className="production-descripton"
+                placeholder="Н: Характеристики изделия/материала"
+                name="descripton"
+                onChange={onChangeSelected}
+              />
+            </label>
+            <label className="production-lable-block">
+              Количество:
+              <input
+                type="number"
+                id="production-inputs"
+                className="production-descripton"
+                name="descripton"
+                onChange={onChangeSelected}
+              />
+            </label>
             <button
               type="submit"
               className="btn-production-send-form"
