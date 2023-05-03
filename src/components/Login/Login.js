@@ -16,28 +16,28 @@ function Login() {
     }
   }, []);
 
-  // const onFinish = async (values) => {
+  const onFinish = async (values) => {
 
-  //   try {
-  //     const response = await axios.get(`http://localhost:1337/api/users`);
-  //     const users = response.data;
-  //     const user = users.find((person) => person.email === values.email);
-  //     if (user) {
-  //       if (values.remember) {
-  //         // сохраняем id в локальном хранилище
-  //         localStorage.setItem("id", user.id);
-  //       } else {
-  //         // удаляем id из локального хранилища
-  //         localStorage.removeItem("id");
-  //       }
-  //       navigation("/my-trades");
-  //     } else {
-  //       setError(true);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+    try {
+      const response = await axios.get(`http://localhost:1337/api/users`);
+      const users = response.data;
+      const user = users.find((person) => person.email === values.email);
+      if (user) {
+        if (values.remember) {
+          // сохраняем id в локальном хранилище
+          localStorage.setItem("id", user.id);
+        } else {
+          // удаляем id из локального хранилища
+          localStorage.removeItem("id");
+        }
+        navigation("/my-trades");
+      } else {
+        setError(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -52,7 +52,7 @@ function Login() {
           initialValues={{
             remember: true,
           }}
-          // onFinish={onFinish}
+          onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >

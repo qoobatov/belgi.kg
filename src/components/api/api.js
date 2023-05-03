@@ -13,6 +13,8 @@ export function addUsers(data) {
 export function loginUser(data) {
   return strapiApi.post("auth/local", { json: data });
 }
+
+
 export function addBulkProduct(data) {
   return strapiApi.post("bulk-buyings", { json: { data: data } });
 }
