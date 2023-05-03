@@ -51,6 +51,35 @@ function BayerServices() {
     const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
     const chat_id = "-1001979905864"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
     // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
+    // const url =
+    //   "https://api.telegram.org/bot" +
+    //   token +
+    //   "/sendMessage?chat_id=" +
+    //   chat_id +
+    //   "&parse_mode=html&text=" +
+    //   encodeURIComponent(
+    //     "Наименование товара: " +
+    //       bulk.ProductName +
+    //       "\nОписание товара: " +
+    //       bulk.ProductDescription +
+    //       "\nСсылка на сделки: " +
+    //       "google.com"
+    //   );
+
+    const button = {
+      text: "Перейти к сделкам",
+      url: "http://google.com",
+    };
+
+    // Создаем объект клавиатуры и добавляем нашу кнопку в нее
+    const inlineKeyboard = {
+      inline_keyboard: [[button]],
+    };
+
+    // Преобразуем объект клавиатуры в JSON строку
+    const keyboardJSON = JSON.stringify(inlineKeyboard);
+
+    // Формируем ссылку на API Телеграма с использованием нашей клавиатуры
     const url =
       "https://api.telegram.org/bot" +
       token +
@@ -62,9 +91,14 @@ function BayerServices() {
           bulk.ProductName +
           "\nОписание товара: " +
           bulk.ProductDescription +
-          "\nСсылка на сделки: " +
-          "google.com"
-      );
+          "\n"
+      ) +
+      "&reply_markup=" +
+      encodeURIComponent(keyboardJSON);
+
+    // Отправляем запрос на API Телеграма с нашей клавиатурой и кнопкой
+    // fetch(url);
+
     try {
       const response = fetch(url);
       const data = response.json();
@@ -106,7 +140,6 @@ function BayerServices() {
             </label>
             <button
               className="btn-bayer-services-submit"
-              type="submit"
               // onClick={showModal}
             >
               Отправить

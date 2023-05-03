@@ -22,7 +22,7 @@ function Login() {
       const users = response.data;
       const user = users.find(
         (person) =>
-          person.email === values.email && person.password === values.pass
+          person.email === values.email && person.pass === values.password
       );
       if (user) {
         if (values.remember) {
