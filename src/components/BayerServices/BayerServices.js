@@ -68,7 +68,7 @@ function BayerServices() {
 
     const button = {
       text: "Перейти к сделкам",
-      url: "http://google.com",
+      url: "https://t.me/Ani_Trixter",
     };
 
     // Создаем объект клавиатуры и добавляем нашу кнопку в нее

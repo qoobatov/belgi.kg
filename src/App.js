@@ -6,6 +6,7 @@ import TradeList from "./components/TradeList/TradeList";
 import NewOrder from "./components/NewOrder/NewOrder";
 import BayerServices from "./components/BayerServices/BayerServices";
 import Register from "./components/Register/Register";
+import Production from "./components/Production/Production";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/new-order" element={<NewOrder />} />
             <Route path="/bayer-services" element={<BayerServices />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/production" element={<Production />} />
           </Routes>
         </Router>
       </div>

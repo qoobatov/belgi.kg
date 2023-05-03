@@ -8,6 +8,7 @@ function NewOrder() {
   const navigate = useNavigate();
   const [showTradeList, setshowTradeList] = useState(false);
   const [showBayerServices, setshowBayerServices] = useState(false);
+  const [showProduction, setshowProduction] = useState(false);
 
   const handleClickBack = () => {
     setshowTradeList(true);
@@ -18,7 +19,7 @@ function NewOrder() {
     navigate("/bayer-services");
   };
   const onClickProduction = () => {
-    setshowBayerServices(true);
+    setshowProduction(true);
     navigate("/production");
   };
 
@@ -53,6 +54,7 @@ function NewOrder() {
           </Button>
           {showTradeList && navigate("/my-trades")}
           {showBayerServices && navigate("/bayer-services")}
+          {showProduction && navigate("/production")}
         </div>
       </div>
     </>
