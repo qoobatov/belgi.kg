@@ -10,8 +10,8 @@ function Production() {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     nameOrder: "",
-    category: "",
-    desc: "",
+    category: "Женская одежда",
+    description: "",
     quantity: "",
     materialOrder: "",
     sample: "",
@@ -65,8 +65,12 @@ function Production() {
       encodeURIComponent(
         "Наименование товара: " +
           formValues.nameOrder +
-          "\nОписание товара: " +
+          "\nВыберите категорию: " +
           formValues.category +
+          "\nОписание заказа: " +
+          formValues.description +
+          "\nКоличество" +
+          formValues.quantity +
           "\n"
       ) +
       "&reply_markup=" +
@@ -108,6 +112,7 @@ function Production() {
                 className="production-category"
                 name="category"
                 onChange={onChangeSelected}
+                value ="Женская одежда"
               >
                 <option value="Женская одежда">Женская одежда</option>
                 <option value="Мужская одежда">Мужская одежда</option>
@@ -117,11 +122,13 @@ function Production() {
             </label>
             <label className="production-lable-block">
               Описание заказа:
-              <input
+              <textarea
+                rows="5"
+                cols="30"
                 id="production-inputs"
                 className="production-descripton"
                 placeholder="Н: Характеристики изделия/материала"
-                name="descripton"
+                name="description"
                 onChange={onChangeSelected}
               />
             </label>
@@ -131,7 +138,7 @@ function Production() {
                 type="number"
                 id="production-inputs"
                 className="production-descripton"
-                name="descripton"
+                name="quantity"
                 onChange={onChangeSelected}
               />
             </label>
