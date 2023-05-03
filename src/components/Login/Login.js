@@ -17,11 +17,13 @@ function Login() {
   }, []);
 
   const onFinish = async (values) => {
-
     try {
       const response = await axios.get(`http://localhost:1337/api/users`);
       const users = response.data;
-      const user = users.find((person) => person.email === values.email);
+      const user = users.find(
+        (person) =>
+          person.email === values.email && person.password === values.pass
+      );
       if (user) {
         if (values.remember) {
           // сохраняем id в локальном хранилище
