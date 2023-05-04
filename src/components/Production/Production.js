@@ -112,7 +112,6 @@ function Production() {
                 className="production-category"
                 name="category"
                 onChange={onChangeSelected}
-                value ="Женская одежда"
               >
                 <option value="Женская одежда">Женская одежда</option>
                 <option value="Мужская одежда">Мужская одежда</option>

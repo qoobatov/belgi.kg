@@ -1,15 +1,12 @@
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.register-container {
+.select-role-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
-.register-content {
+
+.select-role-content {
   width: 350px;
   max-height: 850px;
   padding: 10px 5px;
@@ -18,28 +15,20 @@
   flex-direction: column;
 }
 
-.register-content h3 {
+.select-role-content h3 {
   text-align: center;
+  margin-bottom: 40px;
 }
-.register-form {
+
+.select-role-btns {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
-.register-input {
-  margin-bottom: 10px;
-  height: 40px;
-  font-size: 16px;
-  border-radius: 5px;
-  padding: 0px 10px;
-  border: 1px solid #e4e0e0;
-}
-
-#offert {
-  margin-bottom: 20px;
-}
-
-.register-btn {
+.select-role-customer {
+  width: 50%;
   height: 40px;
   font-size: 18px;
   background-color: #1976d2;
@@ -49,17 +38,23 @@
   cursor: pointer;
 }
 
-.register-login-block {
-  margin-top: 15px;
-}
-
-.register-back-to-login {
-  text-decoration: underline;
-  color: #1976d2;
+.select-role-provider {
+  width: 50%;
+  height: 40px;
+  font-size: 18px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  padding: 0px 10px;
+  border: none;
   cursor: pointer;
 }
 
-.back-to-select-role-arrow{
-  font-weight: bold;
+.select-role-login-block {
+  text-align: center;
+}
+
+.select-role-back-to-login {
+  text-decoration: underline;
+  color: #1976d2;
   cursor: pointer;
 }

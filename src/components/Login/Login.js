@@ -102,7 +102,7 @@ function Login() {
         <div className="login-register-block">
           <span>У вас ещё нет аккаунта?</span>
           <span
-            onClick={() => navigation("/register")}
+            onClick={() => navigation("/select-role")}
             className="login-btn-register"
           >
             Зарегистрироваться

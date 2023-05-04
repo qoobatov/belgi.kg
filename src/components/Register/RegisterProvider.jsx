@@ -1,11 +1,10 @@
-import React from "react";
-import "./Register.css";
 import { useState } from "react";
 import { addUsers } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
-function Register() {
+const RegisterProvider = () => {
   const navigation = useNavigate();
+
   const [user, setUser] = useState({
     username: "",
     lastName: "",
@@ -14,7 +13,7 @@ function Register() {
     city: "",
     address: "",
     nameCompany: "",
-    offert: false,
+    offert: true,
     password: "",
     pass: "",
   });
@@ -51,12 +50,11 @@ function Register() {
         <div className="register-content">
           <span
             className="back-to-select-role-arrow"
-            style={{ fontSize: "22px" }}
             onClick={() => navigation("/select-role")}
           >
             &#10229;
           </span>
-          <h3>Регистрация для заказчика</h3>
+          <h3>Регистрация для поставщика</h3>
           <form className="register-form" onSubmit={submit}>
             <label htmlFor="register-input-name">Имя</label>
             <input
@@ -98,36 +96,6 @@ function Register() {
               onChange={changeHandler}
             />
             <label htmlFor="register-input-email">E-mail</label>
-
-            <input
-              className="register-input"
-              id="register-input-email"
-              type="email"
-              placeholder="Введите email"
-              name="email"
-              onChange={changeHandler}
-            />
-            <label htmlFor="register-input-country">Страна</label>
-
-            <input
-              className="register-input"
-              id="register-input-country"
-              type="text"
-              placeholder="Введите страну"
-              name="country"
-              onChange={changeHandler}
-            />
-            <label htmlFor="register-input-city">Город</label>
-
-            <input
-              className="register-input"
-              id="register-input-city"
-              type="text"
-              placeholder="Введите город"
-              name="city"
-              onChange={changeHandler}
-            />
-            <label htmlFor="register-input-adress">Адрес</label>
 
             <input
               className="register-input"
@@ -173,6 +141,6 @@ function Register() {
       </div>
     </>
   );
-}
+};
 
-export default Register;
+export default RegisterProvider;

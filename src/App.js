@@ -7,6 +7,8 @@ import NewOrder from "./components/NewOrder/NewOrder";
 import BayerServices from "./components/BayerServices/BayerServices";
 import Register from "./components/Register/Register";
 import Production from "./components/Production/Production";
+import SelectRole from "./components/SelectRole/SelectRole";
+import RegisterProvider from "./components/Register/RegisterProvider";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <Route path="/bayer-services" element={<BayerServices />} />
             <Route path="/register" element={<Register />} />
             <Route path="/production" element={<Production />} />
+            <Route path="/select-role" element={<SelectRole />} />
+            <Route path="/register-provider" element={<RegisterProvider />} />
           </Routes>
         </Router>
       </div>
