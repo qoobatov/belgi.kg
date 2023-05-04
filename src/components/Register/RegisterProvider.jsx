@@ -1,3 +1,4 @@
+import "./Register.css";
 import { useState } from "react";
 import { addUsers } from "../api/api";
 import { useNavigate } from "react-router-dom";
@@ -10,12 +11,11 @@ const RegisterProvider = () => {
     lastName: "",
     email: "",
     phone: "",
-    city: "",
-    address: "",
     nameCompany: "",
-    offert: true,
+    offert: false,
     password: "",
     pass: "",
+    roleProvider: true,
   });
 
   const changeHandler = (event) => {
@@ -102,7 +102,7 @@ const RegisterProvider = () => {
               id="register-input-adress"
               type="text"
               placeholder="Введите адрес доставки"
-              name="address"
+              name="email"
               onChange={changeHandler}
             />
             <label htmlFor="register-input-password">Пароль</label>

@@ -17,6 +17,7 @@ function Register() {
     offert: false,
     password: "",
     pass: "",
+    roleProvider: false,
   });
 
   const changeHandler = (event) => {

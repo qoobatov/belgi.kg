@@ -43,7 +43,7 @@ function Production() {
     const chat_id = "-1001950653999"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
     // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
     const button = {
-      text: "Принять заказ",
+      text: "test btn",
       url: `https://t.me/${localStorage.getItem("tg")}`,
     };
 
