@@ -1,13 +1,15 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  background-color: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
 }
 
 input, textarea, option {
   color: black;
 }
 
-body {
+/* body {
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
-}
+} */
