@@ -3,6 +3,7 @@ import "./Register.css";
 import { useState } from "react";
 import { addUsers } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import Preloader from "../Preloader/Preloader";
 
 function Register() {
   const navigation = useNavigate();
@@ -57,6 +58,7 @@ function Register() {
           >
             &#10229;
           </span>
+          <Preloader />
           <h3>Регистрация для заказчика</h3>
           <form className="register-form" onSubmit={submit}>
             <label htmlFor="register-input-name">Имя</label>

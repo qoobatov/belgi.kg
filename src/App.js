@@ -9,6 +9,9 @@ import Register from "./components/Register/Register";
 import Production from "./components/Production/Production";
 import SelectRole from "./components/SelectRole/SelectRole";
 import RegisterProvider from "./components/Register/RegisterProvider";
+import AuthPage from "./components/AuthPage";
+import BusinesCard from "./components/BusinesCard";
+import MyDeals from "./components/MyDeals";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
             <Route path="/production" element={<Production />} />
             <Route path="/select-role" element={<SelectRole />} />
             <Route path="/register-provider" element={<RegisterProvider />} />
+            <Route path="/authpage" element={<AuthPage />} />
+            <Route path="/businescard" element={<BusinesCard />} />
+            <Route path="/mydeals" element={<MyDeals />} />
           </Routes>
         </Router>
       </div>

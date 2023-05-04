@@ -22,7 +22,7 @@ function MyTrades() {
   };
   const handleClickExit = () => {
     navigate("/belgi.kg");
-    localStorage.removeItem('id')
+    localStorage.clear();
   };
 
   return (

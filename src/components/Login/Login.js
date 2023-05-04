@@ -2,43 +2,78 @@ import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import axios from "axios";
+// import axios from "axios";
 import { Form, Input, Button, Checkbox } from "antd";
+import { loginUser } from "../api/api";
 
 function Login() {
   const [error, setError] = useState(false);
+  const [user, setUser] = useState({
+    identifier: "",
+    password: "",
+  });
   const navigation = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies(["remember"]);
 
   useEffect(() => {
-    if (localStorage.getItem("id")) {
+    if (localStorage.getItem("role") === "provider") {
+      navigation("/authpage");
+    } else if (localStorage.getItem("role") === "client") {
       navigation("/my-trades");
+    } else {
+      navigation("/belgi.kg");
     }
   }, []);
 
-  const onFinish = async (values) => {
-    try {
-      const response = await axios.get(`http://localhost:1337/api/users`);
-      const users = response.data;
-      const user = users.find(
-        (person) =>
-          person.email === values.email && person.pass === values.password
-      );
-      if (user) {
-        if (values.remember) {
-          // сохраняем id в локальном хранилище
-          localStorage.setItem("id", user.id);
+  const onFinish = async () => {
+    loginUser(user)
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("jwt", data.jwt);
+        localStorage.setItem("id", data.user.id);
+        if (data.user.roleProvider) {
+          localStorage.setItem("role", "provider");
         } else {
-          // удаляем id из локального хранилища
-          localStorage.removeItem("id");
+          localStorage.setItem("role", "client");
         }
-        navigation("/my-trades");
-      } else {
-        setError(true);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+        if (data.user.roleProvider) {
+          navigation("/authpage");
+        } else {
+          navigation("/my-trades");
+        }
+      });
+
+    // try {
+    //   const response = await axios.get(`http://localhost:1337/api/users`);
+    //   const users = response.data;
+    //   const user = users.find(
+    //     (person) =>
+    //       person.email === values.email && person.pass === values.password
+    //   );
+    //   if (user) {
+    //     if (values.remember) {
+    //       // сохраняем id в локальном хранилище
+    //       localStorage.setItem("id", user.id);
+    //     } else {
+    //       // удаляем id из локального хранилища
+    //       localStorage.removeItem("id");
+    //     }
+    //     navigation("/my-trades");
+    //   } else {
+    //     setError(true);
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  };
+
+  const changeHandler = (event) => {
+    setUser((user) => {
+      return {
+        ...user,
+        [event.target.name]: event.target.value,
+      };
+    });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -72,7 +107,12 @@ function Login() {
               },
             ]}
           >
-            <Input className="input-login" placeholder="Email" />
+            <Input
+              className="input-login"
+              placeholder="Email"
+              onChange={changeHandler}
+              name="identifier"
+            />
           </Form.Item>
 
           <Form.Item
@@ -84,7 +124,12 @@ function Login() {
               },
             ]}
           >
-            <Input.Password className="input-password" placeholder="Пароль" />
+            <Input.Password
+              className="input-password"
+              placeholder="Пароль"
+              onChange={changeHandler}
+              name="password"
+            />
           </Form.Item>
           <Form.Item name="remember" valuePropName="checked">
             <Checkbox className="login-remember-me">Запомнить меня</Checkbox>
