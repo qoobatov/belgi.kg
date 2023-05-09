@@ -50,7 +50,6 @@
   color: black;
 }
 
-
 .btn-production-send-form {
   width: 100%;
   height: 40px;
@@ -67,3 +66,18 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.production-orderDeadline {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.production-orderDeadline:hover {
+  border-color: black;
+}
+
+

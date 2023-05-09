@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "antd";
 import { deleteBulkProduct, getBulkProduct } from "../api/api";
+import Preloader from "../Preloader/Preloader";
 
 function TradeList() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function TradeList() {
       setBulkproducts(res.bulk_buyings)
     );
   }, []);
-  console.log(bulkproducts);
+  // console.log(bulkproducts);
 
   const handleClick = () => {
     setshowTradeList(true);
@@ -30,7 +31,9 @@ function TradeList() {
     window.location.reload();
   };
 
-  return (
+  return !bulkproducts ? (
+    <Preloader />
+  ) : (
     <>
       <div className="trade-list-container">
         <div className="trade-list-content">

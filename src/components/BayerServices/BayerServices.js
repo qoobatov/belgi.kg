@@ -53,7 +53,6 @@ function BayerServices() {
     const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
     const chat_id = "-1001979905864"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
     // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
-    
 
     const button = {
       text: "test btn",
@@ -84,8 +83,6 @@ function BayerServices() {
       ) +
       "&reply_markup=" +
       encodeURIComponent(keyboardJSON);
-
-
 
     try {
       const response = fetch(url);

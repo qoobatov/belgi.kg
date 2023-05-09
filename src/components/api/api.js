@@ -17,6 +17,11 @@ export function loginUser(data) {
 export function addBulkProduct(data) {
   return strapiApi.post("bulk-buyings", { json: { data: data } });
 }
+
+export function addProductionProduct(data) {
+  return strapiApi.post("productions", { json: { data: data } });
+}
+
 export function getBulkProduct(id) {
   return strapiApi.get(`users/${id}?populate=*`).json();
 }
