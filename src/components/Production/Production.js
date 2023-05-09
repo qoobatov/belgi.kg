@@ -226,11 +226,11 @@ function Production() {
               Срок выполнения заказа:
               <input
                 type="date"
-                format="dd-MM-yyyy"
                 id="production-inputs"
                 className="production-orderDeadline"
                 name="orderDeadline"
                 onChange={onChangeSelected}
+                placeholder="Выберите дату"
               />
             </label>
 
@@ -239,17 +239,9 @@ function Production() {
             <label className="production-lable-block">
               Фото:
               <input
-                type="file"
-                multiple
-                accept="image/*"
-                id="production-inputs"
-                className="production-media"
-                name="mediaProduct"
-                onChange={uploadFiles}
-                // onChange={onImageChange}
+   
               />
             </label>
-            {/* {imageURLs.map(imageSrc => <img src={imageSrc}/>)} */}
 
             {/* ******************************************************************* */}
 
