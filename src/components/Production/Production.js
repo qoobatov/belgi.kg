@@ -21,10 +21,10 @@ function Production() {
     delivery: "Заказчик",
     deliveryType: "-",
     orderDeadline: "",
-    mediaProduct: "",
     payment: "",
     moreServices: "",
     comments: "",
+    mediaProduct: "",
     users_permissions_users: "",
   });
 
@@ -39,14 +39,40 @@ function Production() {
     });
   };
 
+  // const uploadFiles = (e) => {
+  //   setFormValues((formValues) => {
+  //     return {
+  //       ...formValues,
+  //       mediaProduct: URL.createObjectURL(e.target.files[0]),
+  //     };
+  //   });
+  // };
+
+
   const uploadFiles = (e) => {
     setFormValues((formValues) => {
       return {
         ...formValues,
-        mediaProducts: URL.createObjectURL(e.target.files[0]),
+        mediaProduct: e.target.files,
       };
     });
   };
+  
+  // {formValues.mediaProduct && (
+  //   <div>
+  //     {Array.from(formValues.mediaProduct).map((file, index) => (
+  //       <a key={index} href={URL.createObjectURL(file)} target="_blank">
+  //         {index + 1}. Фото
+  //       </a>
+  //     ))}
+  //   </div>
+  // )}
+  
+
+
+
+
+
 
   const onClickBackNewOrder = () => {
     setshowNewOrder(true);
@@ -82,15 +108,31 @@ function Production() {
       chat_id +
       "&parse_mode=html&text=" +
       encodeURIComponent(
-        "Наименование товара: " +
+        "<b><i>Наименование товара:</i></b>  " +
           formValues.nameOrder +
-          "\nВыберите категорию: " +
+          "\n <b><i>Категория:</i></b>  " +
           formValues.category +
-          "\nОписание заказа: " +
+          "\n<b><i>Описание заказа:</i></b>  " +
           formValues.descOrder +
-          "\nКоличество: " +
+          "\n<b><i>Количество:</i></b>  " +
           formValues.quantity +
-          "\nФотографии: " +
+          "\n<b><i>Материалы для заказа:</i></b>  " +
+          formValues.materialOrder +
+          "\n<b><i>Образец:</i></b>  " +
+          formValues.sample +
+          "\n<b><i>Доставка:</i></b>  " +
+          formValues.delivery +
+          "\n<b><i>Способ доставки:</i></b>  " +
+          formValues.deliveryType +
+          "\n<b><i>Срок выполнения заказа:</i></b>  " +
+          formValues.orderDeadline +
+          "\n<b><i>Условия оплаты:</i></b>  " +
+          formValues.payment +
+          "\n<b><i>Дополнительные услуги:</i></b>  " +
+          formValues.moreServices +
+          "\n<b><i>Примечания и комментарии:</i></b>  " +
+          formValues.comments +
+          "\n<b><i>Прикрепленные фото:</i></b>  " +
           formValues.mediaProduct +
           "\n"
       ) +
@@ -230,18 +272,56 @@ function Production() {
                 className="production-orderDeadline"
                 name="orderDeadline"
                 onChange={onChangeSelected}
-                placeholder="Выберите дату"
+              />
+            </label>
+            <label className="production-lable-block">
+              Условия оплаты:
+              <input
+                type="text"
+                id="production-inputs"
+                className="production-payment"
+                name="payment"
+                onChange={onChangeSelected}
+                placeholder="Н: предоплата, постоплата и т.д."
+              />
+            </label>
+
+            <label className="production-lable-block">
+              Дополнительные услуги:
+              <input
+                type="text"
+                id="production-inputs"
+                className="production-moreServices"
+                name="moreServices"
+                onChange={onChangeSelected}
+                placeholder="Н: упаковка, маркировка и т.д."
+              />
+            </label>
+
+            <label className="production-lable-block">
+              Примечания и комментарии:
+              <textarea
+                id="production-inputs"
+                className="production-comments"
+                name="comments"
+                onChange={onChangeSelected}
               />
             </label>
 
             {/* ****************************************************************** */}
 
             <label className="production-lable-block">
-              Фото:
+              Прикрепить тех. задание или фото:
               <input
-   
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={uploadFiles}
+                multiple
               />
             </label>
+
+       
 
             {/* ******************************************************************* */}
 
