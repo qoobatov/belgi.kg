@@ -1,9 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./style.module.sass";
 import { Button } from "antd";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getBulkProduct } from "../api/api";
 
 const MyDeals = () => {
+  const [deals, setDeals] = useState("");
   const redirect = useNavigate();
+  useEffect(() => {
+    getBulkProduct(localStorage.getItem("id")).then((res) =>
+      setDeals(res.bulk_buyings_product)
+    );
+  }, []);
   return (
     <div className={styles.deals}>
       <div className={styles.deals__btn}>
@@ -12,20 +21,23 @@ const MyDeals = () => {
         </Button>
       </div>
       <div className={styles.deals__cards}>
-        {/* {deals.map((item, index) => {
-          return (
-            <div key={index + Math.random()} className={styles.deals__list}>
-              <h3>{item.title}</h3>
-              <Button
-                type="primary"
-                onClick={() => redirect(`/web-app-providers/deals/${item.id}`)}
-              >
-                Подробнее
-                <Link to="/web-app-providers/deals">Подробнее</Link>
-              </Button>
-            </div>
-          );
-        })} */}
+        {deals &&
+          deals.map((item, index) => {
+            return (
+              <div key={index + Math.random()} className={styles.deals__list}>
+                <h3>{item.ProductName}</h3>
+                <h3>{item.ProductDescription}</h3>
+                <Button
+                  type="primary"
+                  onClick={() =>
+                    redirect(`/web-app-providers/deals/${item.id}`)
+                  }
+                >
+                  Подробнее
+                </Button>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ function BayerServices() {
   const [showNewOrder, setshowNewOrder] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [status, setStatus] = useState("");
+  const [id, setId] = useState();
   const [bulk, setBulk] = useState({
     ProductName: "",
     ProductDescription: "",
@@ -47,17 +48,20 @@ function BayerServices() {
 
   const submit = (e) => {
     e.preventDefault();
-    addBulkProduct(bulk);
-    localStorage.setItem("tg", bulk.tg);
+    addBulkProduct(bulk)
+      .then((res) => res.json())
+      .then((resp) => localStorage.setItem("xz", resp.data.id + 1));
 
     const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
     const chat_id = "-1001979905864"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
     // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
 
     const button = {
-      text: "test btn",
-      url: `https://t.me/${localStorage.getItem("tg")}`,
+      text: "Подробнее",
+      url: `http://127.0.0.1:3000/allTradesList/${localStorage.getItem("xz")}`,
     };
+
+    console.log(button.text);
 
     // Создаем объект клавиатуры и добавляем нашу кнопку в нее
     const inlineKeyboard = {

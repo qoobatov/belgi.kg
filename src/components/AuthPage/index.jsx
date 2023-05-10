@@ -1,13 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.sass";
 import { Button } from "antd";
+import { useEffect } from "react";
+import { AddBulkProductToProviders } from "../api/api";
+import { useState } from "react";
 
 function AuthPage() {
   const navigate = useNavigate();
+  const [provider, setProvider] = useState({
+    Provider: "",
+  });
   const handleClickExit = () => {
     navigate("/belgi.kg");
     localStorage.clear();
   };
+
+  useEffect(() => {
+    setProvider((provider) => {
+      return {
+        ...provider,
+        Provider: localStorage.getItem("id"),
+      };
+    });
+  }, []);
+  if (localStorage.getItem("idProduct")) {
+    AddBulkProductToProviders(localStorage.getItem("idProduct"), provider);
+  }
+
   const redirect = useNavigate();
   return (
     <div className={styles.myTradesContainer}>

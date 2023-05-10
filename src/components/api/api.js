@@ -28,3 +28,15 @@ export function getBulkProduct(id) {
 export function deleteBulkProduct(id) {
   return strapiApi.delete(`bulk-buyings/${id}`);
 }
+
+export const getAllBulkProduct = () => {
+  return strapiApi.get("bulk-buyings").json();
+};
+
+export const getOnlyBulkProduct = (id) => {
+  return strapiApi.get(`bulk-buyings/${id}`).json();
+};
+
+export const AddBulkProductToProviders = (id, data) => {
+  return strapiApi.put(`bulk-buyings/${id}`, { json: { data: data } });
+};

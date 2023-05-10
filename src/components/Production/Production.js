@@ -2,10 +2,11 @@ import React from "react";
 import "./Production.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addProductionProduct } from "../api/api";
+import axios from "axios";
 
 function Production() {
   // *******************************************************
+  const [selectedFile, setSelectedFile] = useState(null);
 
   // **************************************************** */
   const [showNewOrder, setshowNewOrder] = useState(false);
@@ -24,7 +25,7 @@ function Production() {
     payment: "",
     moreServices: "",
     comments: "",
-    mediaProduct: "",
+    // mediaProduct: "",
     users_permissions_users: "",
   });
 
@@ -39,40 +40,14 @@ function Production() {
     });
   };
 
-  // const uploadFiles = (e) => {
-  //   setFormValues((formValues) => {
-  //     return {
-  //       ...formValues,
-  //       mediaProduct: URL.createObjectURL(e.target.files[0]),
-  //     };
-  //   });
-  // };
-
-
   const uploadFiles = (e) => {
     setFormValues((formValues) => {
       return {
         ...formValues,
-        mediaProduct: e.target.files,
+        mediaProduct: URL.createObjectURL(e.target.files[0]),
       };
     });
   };
-  
-  // {formValues.mediaProduct && (
-  //   <div>
-  //     {Array.from(formValues.mediaProduct).map((file, index) => (
-  //       <a key={index} href={URL.createObjectURL(file)} target="_blank">
-  //         {index + 1}. Фото
-  //       </a>
-  //     ))}
-  //   </div>
-  // )}
-  
-
-
-
-
-
 
   const onClickBackNewOrder = () => {
     setshowNewOrder(true);
@@ -82,7 +57,48 @@ function Production() {
   const onFinish = async (e) => {
     e.preventDefault();
 
-    addProductionProduct(formValues);
+    // *****************************************
+    const formData = new FormData();
+    formData.append("files", selectedFile);
+
+    const uploadResponse = await axios.post(
+      "http://localhost:1337/api/upload",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        params: {
+          ref: "production",
+          refId: localStorage.getItem("id"), // замените на идентификатор связанной сущности
+          field: "mediaProduct", // замените на имя поля, содержащего файл
+        },
+      }
+    );
+
+    const fileId = uploadResponse.data[0].id;
+    console.log(fileId);
+
+    // *****************************************
+    setFormValues((formValues) => {
+      return {
+        ...formValues,
+        mediaProduction: fileId,
+      };
+    });
+
+    // addProductionProduct(formValues);
+
+    const createResponse = await axios.post(
+      "http://localhost:1337/api/productions",
+      {
+        data: {
+          ...formValues,
+          mediaProduct: fileId,
+        },
+      }
+    );
+    console.log(createResponse.data);
 
     const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
     const chat_id = "-1001950653999"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
@@ -114,26 +130,26 @@ function Production() {
           formValues.category +
           "\n<b><i>Описание заказа:</i></b>  " +
           formValues.descOrder +
-          "\n<b><i>Количество:</i></b>  " +
-          formValues.quantity +
-          "\n<b><i>Материалы для заказа:</i></b>  " +
-          formValues.materialOrder +
-          "\n<b><i>Образец:</i></b>  " +
-          formValues.sample +
-          "\n<b><i>Доставка:</i></b>  " +
-          formValues.delivery +
-          "\n<b><i>Способ доставки:</i></b>  " +
-          formValues.deliveryType +
-          "\n<b><i>Срок выполнения заказа:</i></b>  " +
-          formValues.orderDeadline +
-          "\n<b><i>Условия оплаты:</i></b>  " +
-          formValues.payment +
-          "\n<b><i>Дополнительные услуги:</i></b>  " +
-          formValues.moreServices +
-          "\n<b><i>Примечания и комментарии:</i></b>  " +
-          formValues.comments +
-          "\n<b><i>Прикрепленные фото:</i></b>  " +
-          formValues.mediaProduct +
+          // "\n<b><i>Количество:</i></b>  " +
+          // formValues.quantity +
+          // "\n<b><i>Материалы для заказа:</i></b>  " +
+          // formValues.materialOrder +
+          // "\n<b><i>Образец:</i></b>  " +
+          // formValues.sample +
+          // "\n<b><i>Доставка:</i></b>  " +
+          // formValues.delivery +
+          // "\n<b><i>Способ доставки:</i></b>  " +
+          // formValues.deliveryType +
+          // "\n<b><i>Срок выполнения заказа:</i></b>  " +
+          // formValues.orderDeadline +
+          // "\n<b><i>Условия оплаты:</i></b>  " +
+          // formValues.payment +
+          // "\n<b><i>Дополнительные услуги:</i></b>  " +
+          // formValues.moreServices +
+          // "\n<b><i>Примечания и комментарии:</i></b>  " +
+          // formValues.comments +
+          // "\n<b><i>Прикрепленные фото:</i></b>  " +
+          // formValues.mediaProduct +
           "\n"
       ) +
       "&reply_markup=" +
@@ -316,12 +332,13 @@ function Production() {
                 type="file"
                 id="production-inputs"
                 name="mediaProduct"
-                onChange={uploadFiles}
+                onChange={(e) => {
+                  setSelectedFile(e.target.files[0]);
+                }}
                 multiple
               />
+              {/* <SendImgToStrapi /> */}
             </label>
-
-       
 
             {/* ******************************************************************* */}
 

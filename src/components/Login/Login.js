@@ -4,13 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // import axios from "axios";
 import { Form, Input, Button, Checkbox } from "antd";
-import { loginUser } from "../api/api";
+import { AddBulkProductToProviders, loginUser } from "../api/api";
 
 function Login() {
   const [error, setError] = useState(false);
   const [user, setUser] = useState({
     identifier: "",
     password: "",
+  });
+  const [provider, setProvider] = useState({
+    Provider: "",
   });
   const navigation = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies(["remember"]);
