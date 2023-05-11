@@ -41,7 +41,7 @@ function Register() {
     });
   };
 
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault();
 
     addUsers(user);
@@ -58,7 +58,6 @@ function Register() {
           >
             &#10229;
           </span>
-          <Preloader />
           <h3>Регистрация для заказчика</h3>
           <form className="register-form" onSubmit={submit}>
             <label htmlFor="register-input-name">Имя</label>

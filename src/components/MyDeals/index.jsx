@@ -29,9 +29,7 @@ const MyDeals = () => {
                 <h3>{item.ProductDescription}</h3>
                 <Button
                   type="primary"
-                  onClick={() =>
-                    redirect(`/web-app-providers/deals/${item.id}`)
-                  }
+                  onClick={() => redirect(`/mydeals/${item.id}`)}
                 >
                   Подробнее
                 </Button>

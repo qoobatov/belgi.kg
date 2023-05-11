@@ -46,7 +46,7 @@ function BayerServices() {
     });
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     addBulkProduct(bulk)
       .then((res) => res.json())
@@ -56,16 +56,30 @@ function BayerServices() {
     const chat_id = "-1001979905864"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
     // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
 
-    const button = {
-      text: "Подробнее",
-      url: `http://127.0.0.1:3000/allTradesList/${localStorage.getItem("xz")}`,
-    };
+    // const button = {
+    //   text: "Подробнее",
+    //   url: `http://127.0.0.1:3000/allTradesList/${
+    //     localStorage.getItem("xz") && localStorage.getItem("xz")
+    //   }`,
+    // };
 
-    console.log(button.text);
+    // console.log(button.text);
 
-    // Создаем объект клавиатуры и добавляем нашу кнопку в нее
     const inlineKeyboard = {
-      inline_keyboard: [[button]],
+      inline_keyboard: [
+        [
+          {
+            text: "Login",
+            // web_app: {
+              url: "https://t.me/BelgiKgBot",
+              // /${
+              //   localStorage.getItem("xz") && localStorage.getItem("xz")
+              // }`,
+            // },
+            // callback_data: "rewew",
+          },
+        ],
+      ],
     };
 
     // Преобразуем объект клавиатуры в JSON строку
@@ -128,15 +142,6 @@ function BayerServices() {
                 rows="7"
                 onChange={changeHandler}
               ></textarea>
-            </label>
-            <label htmlFor="bayer-services-input-text">
-              Укажите свой телеграм аккаунт без "@"
-              <input
-                type="text"
-                id="bayer-services-input-text"
-                name="tg"
-                onChange={changeHandler}
-              />
             </label>
             <button
               className="btn-bayer-services-submit"

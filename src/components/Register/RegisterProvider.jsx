@@ -61,7 +61,7 @@ const RegisterProvider = () => {
               className="register-input"
               id="register-input-name"
               type="text"
-              placeholder="Введите имя"
+              placeholder="введите имя"
               name="username"
               onChange={changeHandler}
             />
@@ -70,7 +70,7 @@ const RegisterProvider = () => {
               className="register-input"
               id="register-input-lastname"
               type="text"
-              placeholder="Введите Фамилию"
+              placeholder="введите фамилию"
               name="lastName"
               onChange={changeHandler}
             />
@@ -91,7 +91,7 @@ const RegisterProvider = () => {
               className="register-input"
               id="register-input-tel"
               type="number"
-              placeholder="Введите телефон"
+              placeholder="введите телефон"
               name="phone"
               onChange={changeHandler}
             />
@@ -101,7 +101,7 @@ const RegisterProvider = () => {
               className="register-input"
               id="register-input-adress"
               type="text"
-              placeholder="Введите адрес доставки"
+              placeholder="введите email"
               name="email"
               onChange={changeHandler}
             />
@@ -111,7 +111,17 @@ const RegisterProvider = () => {
               className="register-input"
               id="register-input-password"
               type="password"
-              placeholder="Password"
+              placeholder="password"
+              name="password"
+              onChange={changeHandler}
+            />
+            <label htmlFor="register-input-tg">Телеграм аккаунт</label>
+
+            <input
+              className="register-input"
+              id="register-input-tg"
+              type="text"
+              placeholder="@account"
               name="password"
               onChange={changeHandler}
             />

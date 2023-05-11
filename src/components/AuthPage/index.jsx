@@ -54,6 +54,9 @@ function AuthPage() {
           </Button>
         </div>
         <div className={styles.myTradesContent__btn}></div>
+        <button className="btn-to-link-tg">
+          <a href="https://t.me/+ZhEG-wZjNtI4Yzky">Канал для заказов</a>
+        </button>
         <Button
           type="primary"
           className="btn-mytrades-exit"

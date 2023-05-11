@@ -14,6 +14,7 @@ import BusinesCard from "./components/BusinesCard";
 import MyDeals from "./components/MyDeals";
 import AllTradesList from "./components/AllTradesList/AllTradesList";
 import Info from "./components/AllTradesList/Info";
+import InfoDeals from "./components/MyDeals/InfoDeals";
 
 function App() {
   return (
@@ -32,10 +33,13 @@ function App() {
             <Route path="/register-provider" element={<RegisterProvider />} />
             <Route path="/authpage" element={<AuthPage />} />
             <Route path="/businescard" element={<BusinesCard />} />
-            <Route path="/mydeals" element={<MyDeals />} />
             <Route path="/allTradesList">
               <Route index element={<AllTradesList />} />
               <Route path=":id" element={<Info />} />
+            </Route>
+            <Route path="/mydeals">
+              <Route index element={<MyDeals />} />
+              <Route path=":id" element={<InfoDeals />} />
             </Route>
           </Routes>
         </Router>
