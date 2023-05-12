@@ -79,7 +79,6 @@
   color: var(--tg-theme-text-color);
 }
 
-.anticon > * {
-  color: var(--tg-theme-text-color);
-
+.ant-input-affix-wrapper .anticon.ant-input-password-icon{
+  color: black;
 }
