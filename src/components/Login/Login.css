@@ -80,5 +80,6 @@
 }
 
 .ant-input-affix-wrapper .anticon.ant-input-password-icon{
-  color: black;
+  color: var(--tg-theme-text-color);
+
 }
