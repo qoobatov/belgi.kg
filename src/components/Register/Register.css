@@ -59,7 +59,11 @@
   cursor: pointer;
 }
 
-.back-to-select-role-arrow{
+.back-to-select-role-arrow {
   font-weight: bold;
   cursor: pointer;
+}
+
+.offert-block-provider label {
+ margin-left: 15px;
 }

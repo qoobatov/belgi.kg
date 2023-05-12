@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
-import "./TradeList.css";
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "antd";
-import {getBulkProduct } from "../api/api";
+import { getProductionProduct } from "../api/api";
 import Preloader from "../Preloader/Preloader";
 
-function TradeList() {
+function ProductionList() {
   const navigate = useNavigate();
   const [showTradeList, setshowTradeList] = useState(false);
-  const [bulkproducts, setBulkproducts] = useState();
+  const [production, setProduction] = useState();
   useEffect(() => {
-    getBulkProduct(localStorage.getItem("id")).then((res) =>
-      setBulkproducts(res.bulk_buyings)
+    getProductionProduct(localStorage.getItem("id")).then((res) =>
+      setProduction(res.productions)
     );
   }, []);
   // console.log(bulkproducts);
@@ -26,21 +25,21 @@ function TradeList() {
     window.open("https://belgi.kg/#/shoppingtour", "_blank");
   };
 
-  // const deleteBulk = async (id) => {
-  //   await deleteBulkProduct(id);
-  //   window.location.reload();
-  // };
+  //   const deleteBulk = async (id) => {
+  //     await deleteBulkProduct(id);
+  //     window.location.reload();
+  //   };
 
-  return !bulkproducts ? (
+  return !production ? (
     <Preloader />
   ) : (
     <>
       <div className="trade-list-container">
         <div className="trade-list-content">
-          <h3>Ваши оптовые заказы:</h3>
+          <h3>Заказ на производство:</h3>
           <div className="trade-more-info-container">
-            {bulkproducts &&
-              bulkproducts.map((data, index) => {
+            {production &&
+              production.map((data, index) => {
                 return (
                   <div key={index + 1} className="trade-list-items-block">
                     <table>
@@ -49,8 +48,8 @@ function TradeList() {
                         <th>Описание товара</th>
                       </tr>
                       <tr>
-                        <td className="td-product-name">{data.ProductName}</td>
-                        <td>{data.ProductDescription}</td>
+                        <td className="td-product-name">{data.nameOrder}</td>
+                        <td>{data.descOrder}</td>
                       </tr>
                     </table>
                   </div>
@@ -70,7 +69,7 @@ function TradeList() {
             className="btn-trade-list-back"
             onClick={handleClick}
           >
-            Назад
+            назад
           </Button>
           {showTradeList && navigate("/my-trades")}
         </div>
@@ -79,4 +78,4 @@ function TradeList() {
   );
 }
 
-export default TradeList;
+export default ProductionList;

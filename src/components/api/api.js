@@ -25,6 +25,9 @@ export function addProductionProduct(data) {
 export function getBulkProduct(id) {
   return strapiApi.get(`users/${id}?populate=*`).json();
 }
+export function getProductionProduct(id) {
+  return strapiApi.get(`users/${id}?populate=*`).json();
+}
 export function deleteBulkProduct(id) {
   return strapiApi.delete(`bulk-buyings/${id}`);
 }

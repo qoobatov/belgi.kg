@@ -8,8 +8,6 @@ import { addBulkProduct } from "../api/api";
 function BayerServices() {
   const [showNewOrder, setshowNewOrder] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [status, setStatus] = useState("");
-  const [id, setId] = useState();
   const [bulk, setBulk] = useState({
     ProductName: "",
     ProductDescription: "",
@@ -22,11 +20,6 @@ function BayerServices() {
   const onClickBackNewOrder = () => {
     setshowNewOrder(true);
     navigate("/new-order");
-  };
-
-  const showModal = (event) => {
-    event.preventDefault();
-    setIsModalOpen(true);
   };
 
   const handleOk = () => {
@@ -48,74 +41,53 @@ function BayerServices() {
 
   const submit = async (e) => {
     e.preventDefault();
-    addBulkProduct(bulk)
-      .then((res) => res.json())
-      .then((resp) => localStorage.setItem("xz", resp.data.id + 1));
 
-    const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
-    const chat_id = "-1001979905864"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
-    // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
+    if (!bulk.ProductName || !bulk.ProductDescription) {
+      alert("Заполните все поля");
+    } else {
+      addBulkProduct(bulk)
+        .then((res) => res.json())
+        .then((resp) => localStorage.setItem("xz", resp.data.id + 1));
 
-    // const button = {
-    //   text: "Подробнее",
-    //   url: `http://127.0.0.1:3000/allTradesList/${
-    //     localStorage.getItem("xz") && localStorage.getItem("xz")
-    //   }`,
-    // };
+      const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
+      const chat_id = "-1001979905864";
 
-    // console.log(button.text);
+      const button = {
+        text: "Подробнее",
+        url: `http://127.0.0.1:3000/allTradesList/${
+          localStorage.getItem("xz") && localStorage.getItem("xz")
+        }`,
+      };
 
-    const inlineKeyboard = {
-      inline_keyboard: [
-        [
-          {
-            text: "Login",
-            // web_app: {
-              url: "https://t.me/BelgiKgBot",
-              // /${
-              //   localStorage.getItem("xz") && localStorage.getItem("xz")
-              // }`,
-            // },
-            // callback_data: "rewew",
-          },
-        ],
-      ],
-    };
+      const inlineKeyboard = {
+        inline_keyboard: [[button]],
+      };
 
-    // Преобразуем объект клавиатуры в JSON строку
-    const keyboardJSON = JSON.stringify(inlineKeyboard);
+      console.log(button.text);
 
-    // Формируем ссылку на API Телеграма с использованием нашей клавиатуры
-    const url =
-      "https://api.telegram.org/bot" +
-      token +
-      "/sendMessage?chat_id=" +
-      chat_id +
-      "&parse_mode=html&text=" +
-      encodeURIComponent(
-        "Наименование товара: " +
-          bulk.ProductName +
-          "\nОписание товара: " +
-          bulk.ProductDescription +
-          "\n"
-      ) +
-      "&reply_markup=" +
-      encodeURIComponent(keyboardJSON);
+      const keyboardJSON = JSON.stringify(inlineKeyboard);
 
-    try {
-      const response = fetch(url);
-      const data = response.json();
-      if (data.ok) {
-        setStatus("Ваша заявка отправлена");
-      } else {
-        setStatus("Ошибка");
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("Ошибка");
+      const url =
+        "https://api.telegram.org/bot" +
+        token +
+        "/sendMessage?chat_id=" +
+        chat_id +
+        "&parse_mode=html&text=" +
+        encodeURIComponent(
+          "Наименование товара: " +
+            bulk.ProductName +
+            "\nОписание товара: " +
+            bulk.ProductDescription +
+            "\n"
+        ) +
+        "&reply_markup=" +
+        encodeURIComponent(keyboardJSON);
+
+      await fetch(url);
+
+      localStorage.removeItem("tg");
+      navigate("/my-trades");
     }
-
-    localStorage.removeItem("tg");
   };
 
   return (
@@ -143,12 +115,7 @@ function BayerServices() {
                 onChange={changeHandler}
               ></textarea>
             </label>
-            <button
-              className="btn-bayer-services-submit"
-              // onClick={showModal}
-            >
-              Отправить
-            </button>
+            <button className="btn-bayer-services-submit">Отправить</button>
           </form>
 
           <button

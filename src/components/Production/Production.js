@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Production() {
-  // *******************************************************
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState({
+    file1: "",
+    file2: "",
+    file3: "",
+    file4: "",
+  });
 
-  // **************************************************** */
   const [showNewOrder, setshowNewOrder] = useState(false);
-  const [status, setStatus] = useState("");
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     nameOrder: "",
@@ -25,7 +27,6 @@ function Production() {
     payment: "",
     moreServices: "",
     comments: "",
-    // mediaProduct: "",
     users_permissions_users: "",
   });
 
@@ -40,15 +41,6 @@ function Production() {
     });
   };
 
-  const uploadFiles = (e) => {
-    setFormValues((formValues) => {
-      return {
-        ...formValues,
-        mediaProduct: URL.createObjectURL(e.target.files[0]),
-      };
-    });
-  };
-
   const onClickBackNewOrder = () => {
     setshowNewOrder(true);
     navigate("/new-order");
@@ -57,114 +49,122 @@ function Production() {
   const onFinish = async (e) => {
     e.preventDefault();
 
-    // *****************************************
-    const formData = new FormData();
-    formData.append("files", selectedFile);
+    if (
+      !formValues.nameOrder ||
+      !formValues.descOrder ||
+      !formValues.quantity ||
+      !formValues.orderDeadline ||
+      !formValues.payment ||
+      !formValues.moreServices ||
+      !formValues.comments ||
+      !selectedFile
+    ) {
+      alert("Заполните все поля");
+    } else {
+      const formData = new FormData();
+      formData.append("files", selectedFile.file1);
+      formData.append("files", selectedFile.file2);
+      formData.append("files", selectedFile.file3);
+      formData.append("files", selectedFile.file4);
 
-    const uploadResponse = await axios.post(
-      "http://localhost:1337/api/upload",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        params: {
-          ref: "production",
-          refId: localStorage.getItem("id"), // замените на идентификатор связанной сущности
-          field: "mediaProduct", // замените на имя поля, содержащего файл
-        },
-      }
-    );
+      const uploadResponse = await axios.post(
+        "http://localhost:1337/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          params: {
+            ref: "production",
+            refId: localStorage.getItem("id"),
+            field: "mediaProduct",
+          },
+        }
+      );
 
-    const fileId = uploadResponse.data[0].id;
-    console.log(fileId);
+      const fileId = uploadResponse.data[0].id;
+      const fileId2 = uploadResponse.data[1].id;
+      const fileId3 = uploadResponse.data[2].id;
+      const fileId4 = uploadResponse.data[3].id;
+      console.log(fileId);
+      console.log(fileId2);
+      console.log(fileId3);
+      console.log(fileId4);
 
-    // *****************************************
-    setFormValues((formValues) => {
-      return {
-        ...formValues,
-        mediaProduction: fileId,
-      };
-    });
-
-    // addProductionProduct(formValues);
-
-    const createResponse = await axios.post(
-      "http://localhost:1337/api/productions",
-      {
-        data: {
+      setFormValues((formValues) => {
+        return {
           ...formValues,
-          mediaProduct: fileId,
-        },
-      }
-    );
-    console.log(createResponse.data);
+          mediaProduction: fileId,
+        };
+      });
 
-    const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
-    const chat_id = "-1001950653999"; // это айди группы чата,https://api.telegram.org/botXXXXXXXXXXXXXXXXXXXXXXX/getUpdates,
-    // где, XXXXXXXXXXXXXXXXXXXXXXX - токен вашего бота, полученный ранее
-    const button = {
-      text: "test btn",
-      url: `https://t.me/${localStorage.getItem("tg")}`,
-    };
+      const createResponse = await axios.post(
+        "http://localhost:1337/api/productions",
+        {
+          data: {
+            ...formValues,
+            mediaProduct: fileId,
+            mediaProduct2: fileId2,
+            mediaProduct3: fileId3,
+            mediaProduct4: fileId4,
+          },
+        }
+      );
+      console.log(createResponse.data);
 
-    // Создаем объект клавиатуры и добавляем нашу кнопку в нее
-    const inlineKeyboard = {
-      inline_keyboard: [[button]],
-    };
+      const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
+      const chat_id = "-1001950653999";
+      const button = {
+        text: "test btn",
+        url: `https://t.me/${localStorage.getItem("tg")}`,
+      };
 
-    // Преобразуем объект клавиатуры в JSON строку
-    const keyboardJSON = JSON.stringify(inlineKeyboard);
+      const inlineKeyboard = {
+        inline_keyboard: [[button]],
+      };
 
-    // Формируем ссылку на API Телеграма с использованием нашей клавиатуры
-    const url =
-      "https://api.telegram.org/bot" +
-      token +
-      "/sendMessage?chat_id=" +
-      chat_id +
-      "&parse_mode=html&text=" +
-      encodeURIComponent(
-        "<b><i>Наименование товара:</i></b>  " +
-          formValues.nameOrder +
-          "\n <b><i>Категория:</i></b>  " +
-          formValues.category +
-          "\n<b><i>Описание заказа:</i></b>  " +
-          formValues.descOrder +
-          // "\n<b><i>Количество:</i></b>  " +
-          // formValues.quantity +
-          // "\n<b><i>Материалы для заказа:</i></b>  " +
-          // formValues.materialOrder +
-          // "\n<b><i>Образец:</i></b>  " +
-          // formValues.sample +
-          // "\n<b><i>Доставка:</i></b>  " +
-          // formValues.delivery +
-          // "\n<b><i>Способ доставки:</i></b>  " +
-          // formValues.deliveryType +
-          // "\n<b><i>Срок выполнения заказа:</i></b>  " +
-          // formValues.orderDeadline +
-          // "\n<b><i>Условия оплаты:</i></b>  " +
-          // formValues.payment +
-          // "\n<b><i>Дополнительные услуги:</i></b>  " +
-          // formValues.moreServices +
-          // "\n<b><i>Примечания и комментарии:</i></b>  " +
-          // formValues.comments +
-          // "\n<b><i>Прикрепленные фото:</i></b>  " +
-          // formValues.mediaProduct +
-          "\n"
-      ) +
-      "&reply_markup=" +
-      encodeURIComponent(keyboardJSON);
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.ok) {
-        setStatus("Ваша заявка отправлена");
-      } else {
-        setStatus("Ошибка");
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("Ошибка");
+      const keyboardJSON = JSON.stringify(inlineKeyboard);
+
+      const url =
+        "https://api.telegram.org/bot" +
+        token +
+        "/sendMessage?chat_id=" +
+        chat_id +
+        "&parse_mode=html&text=" +
+        encodeURIComponent(
+          "<b><i>Наименование товара:</i></b>  " +
+            formValues.nameOrder +
+            "\n <b><i>Категория:</i></b>  " +
+            formValues.category +
+            "\n<b><i>Описание заказа:</i></b>  " +
+            formValues.descOrder +
+            // "\n<b><i>Количество:</i></b>  " +
+            // formValues.quantity +
+            // "\n<b><i>Материалы для заказа:</i></b>  " +
+            // formValues.materialOrder +
+            // "\n<b><i>Образец:</i></b>  " +
+            // formValues.sample +
+            // "\n<b><i>Доставка:</i></b>  " +
+            // formValues.delivery +
+            // "\n<b><i>Способ доставки:</i></b>  " +
+            // formValues.deliveryType +
+            // "\n<b><i>Срок выполнения заказа:</i></b>  " +
+            // formValues.orderDeadline +
+            // "\n<b><i>Условия оплаты:</i></b>  " +
+            // formValues.payment +
+            // "\n<b><i>Дополнительные услуги:</i></b>  " +
+            // formValues.moreServices +
+            // "\n<b><i>Примечания и комментарии:</i></b>  " +
+            // formValues.comments +
+            // "\n<b><i>Прикрепленные фото:</i></b>  " +
+            // formValues.mediaProduct +
+            "\n"
+        ) +
+        "&reply_markup=" +
+        encodeURIComponent(keyboardJSON);
+      await fetch(url);
+
+      navigate("/my-trades");
     }
   };
 
@@ -182,6 +182,7 @@ function Production() {
                 placeholder="Н: Пошив блузки"
                 name="nameOrder"
                 onChange={onChangeSelected}
+                required
               />
             </label>
             <label className="production-lable-block">
@@ -251,7 +252,7 @@ function Production() {
                 <option value="По договоренности">По договоренности</option>
               </select>
             </label>
-            {/* ****************************************************************** */}
+
             <label className="production-lable-block">
               Доставка:
               <select
@@ -324,8 +325,6 @@ function Production() {
               />
             </label>
 
-            {/* ****************************************************************** */}
-
             <label className="production-lable-block">
               Прикрепить тех. задание или фото:
               <input
@@ -333,14 +332,58 @@ function Production() {
                 id="production-inputs"
                 name="mediaProduct"
                 onChange={(e) => {
-                  setSelectedFile(e.target.files[0]);
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file1: e.target.files[0],
+                    };
+                  });
                 }}
                 multiple
               />
-              {/* <SendImgToStrapi /> */}
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file2: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file3: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file4: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
             </label>
-
-            {/* ******************************************************************* */}
 
             <button
               type="submit"

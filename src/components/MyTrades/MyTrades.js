@@ -11,7 +11,7 @@ function MyTrades() {
 
   const handleClick = () => {
     setshowTradeList(true);
-    navigate("/trade-list");
+    navigate("/select-order");
   };
   const handleClickNewOrder = () => {
     setshowNewOrder(true);

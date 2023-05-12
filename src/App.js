@@ -15,6 +15,8 @@ import MyDeals from "./components/MyDeals";
 import AllTradesList from "./components/AllTradesList/AllTradesList";
 import Info from "./components/AllTradesList/Info";
 import InfoDeals from "./components/MyDeals/InfoDeals";
+import SelectOrders from "./components/TradeList/SelectOrders";
+import ProductionList from "./components/TradeList/ProductionList";
 
 function App() {
   return (
@@ -25,7 +27,9 @@ function App() {
             <Route path="/belgi.kg" element={<Login />} />
             <Route path="/my-trades" element={<MyTrades />} />
             <Route path="/trade-list" element={<TradeList />} />
+            <Route path="/production-list" element={<ProductionList />} />
             <Route path="/new-order" element={<NewOrder />} />
+            <Route path="/select-order" element={<SelectOrders />} />
             <Route path="/bayer-services" element={<BayerServices />} />
             <Route path="/register" element={<Register />} />
             <Route path="/production" element={<Production />} />

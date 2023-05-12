@@ -74,6 +74,16 @@ const RegisterProvider = () => {
               name="lastName"
               onChange={changeHandler}
             />
+            <label htmlFor="register-input-email">E-mail</label>
+
+            <input
+              className="register-input"
+              id="register-input-adress"
+              type="text"
+              placeholder="введите email"
+              name="email"
+              onChange={changeHandler}
+            />
             <label htmlFor="register-input-namecompany">
               Название компании
             </label>
@@ -95,16 +105,6 @@ const RegisterProvider = () => {
               name="phone"
               onChange={changeHandler}
             />
-            <label htmlFor="register-input-email">E-mail</label>
-
-            <input
-              className="register-input"
-              id="register-input-adress"
-              type="text"
-              placeholder="введите email"
-              name="email"
-              onChange={changeHandler}
-            />
             <label htmlFor="register-input-password">Пароль</label>
 
             <input
@@ -115,17 +115,7 @@ const RegisterProvider = () => {
               name="password"
               onChange={changeHandler}
             />
-            <label htmlFor="register-input-tg">Телеграм аккаунт</label>
-
-            <input
-              className="register-input"
-              id="register-input-tg"
-              type="text"
-              placeholder="@account"
-              name="password"
-              onChange={changeHandler}
-            />
-            <div>
+            <div className="offert-block-provider">
               <input
                 id="offert"
                 type="checkbox"

@@ -78,6 +78,16 @@ function Register() {
               name="lastName"
               onChange={changeHandler}
             />
+            <label htmlFor="register-input-email">E-mail</label>
+
+            <input
+              className="register-input"
+              id="register-input-email"
+              type="email"
+              placeholder="Введите email"
+              name="email"
+              onChange={changeHandler}
+            />
             <label htmlFor="register-input-namecompany">
               Название компании
             </label>
@@ -99,16 +109,7 @@ function Register() {
               name="phone"
               onChange={changeHandler}
             />
-            <label htmlFor="register-input-email">E-mail</label>
 
-            <input
-              className="register-input"
-              id="register-input-email"
-              type="email"
-              placeholder="Введите email"
-              name="email"
-              onChange={changeHandler}
-            />
             <label htmlFor="register-input-country">Страна</label>
 
             <input
@@ -149,7 +150,7 @@ function Register() {
               name="password"
               onChange={changeHandler}
             />
-            <div>
+            <div className="offert-block-provider">
               <input
                 id="offert"
                 type="checkbox"
