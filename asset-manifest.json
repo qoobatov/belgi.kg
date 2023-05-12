@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/belgi.kg/static/css/main.7c6eb176.css",
-    "main.js": "/belgi.kg/static/js/main.dc44b3c8.js",
+    "main.css": "/belgi.kg/static/css/main.9bba8f3c.css",
+    "main.js": "/belgi.kg/static/js/main.95d166ed.js",
     "index.html": "/belgi.kg/index.html",
-    "main.7c6eb176.css.map": "/belgi.kg/static/css/main.7c6eb176.css.map",
-    "main.dc44b3c8.js.map": "/belgi.kg/static/js/main.dc44b3c8.js.map"
+    "main.9bba8f3c.css.map": "/belgi.kg/static/css/main.9bba8f3c.css.map",
+    "main.95d166ed.js.map": "/belgi.kg/static/js/main.95d166ed.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c6eb176.css",
-    "static/js/main.dc44b3c8.js"
+    "static/css/main.9bba8f3c.css",
+    "static/js/main.95d166ed.js"
   ]
 }
