@@ -391,7 +391,7 @@ function Production() {
               style={{ marginBottom: "10px" }}
               onClick={onFinish}
             >
-              отправить в канал
+              Отправить на канал
             </button>
           </form>
           <button
@@ -399,7 +399,7 @@ function Production() {
             className="btn-production-back"
             onClick={onClickBackNewOrder}
           >
-            назад
+            Назад
           </button>
           {showNewOrder && navigate("/new-order")}
         </div>
