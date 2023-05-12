@@ -38,19 +38,23 @@ function ProductionList() {
         <div className="trade-list-content">
           <h3>Заказы на производство:</h3>
           <div className="trade-more-info-container">
+            <div className="title-trade-list">
+              <h4 className="title-name-trade-list">Название</h4>
+              <h4>Описание заказа</h4>
+            </div>
             {production &&
               production.map((data, index) => {
                 return (
                   <div key={index + 1} className="trade-list-items-block">
                     <table>
-                      <tr>
-                        <th className="th-product-name-title">Название</th>
-                        <th>Описание товара</th>
-                      </tr>
-                      <tr>
-                        <td className="td-product-name">{data.nameOrder}</td>
-                        <td>{data.descOrder}</td>
-                      </tr>
+                      <td className="td-product-name">{data.nameOrder}</td>
+                      <td>{data.descOrder}</td>
+                      <td
+                        className="trade-list-more-info-btn"
+                        onClick={() => navigate("/product-more-info")}
+                      >
+                        подробнее
+                      </td>
                     </table>
                   </div>
                 );
@@ -69,7 +73,7 @@ function ProductionList() {
             className="btn-trade-list-back"
             onClick={handleClick}
           >
-            назад
+            Назад
           </Button>
           {showTradeList && navigate("/my-trades")}
         </div>

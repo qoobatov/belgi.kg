@@ -3,7 +3,7 @@ import "./TradeList.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "antd";
-import {getBulkProduct } from "../api/api";
+import { getBulkProduct } from "../api/api";
 import Preloader from "../Preloader/Preloader";
 
 function TradeList() {
@@ -39,21 +39,27 @@ function TradeList() {
         <div className="trade-list-content">
           <h3>Ваши оптовые заказы:</h3>
           <div className="trade-more-info-container">
+            <div className="title-trade-list">
+              <h4 className="title-name-trade-list">Название</h4>
+              <h4>Описание заказа</h4>
+            </div>
             {bulkproducts &&
               bulkproducts.map((data, index) => {
                 return (
-                  <div key={index + 1} className="trade-list-items-block">
-                    <table>
-                      <tr>
-                        <th className="th-product-name-title">Название</th>
-                        <th>Описание товара</th>
-                      </tr>
-                      <tr>
+                  <>
+                    <div key={index + 1} className="trade-list-items-block">
+                      <table>
                         <td className="td-product-name">{data.ProductName}</td>
                         <td>{data.ProductDescription}</td>
-                      </tr>
-                    </table>
-                  </div>
+                        <td
+                          className="trade-list-more-info-btn"
+                          onClick={() => navigate("/bulk-more-info")}
+                        >
+                          подробнее
+                        </td>
+                      </table>
+                    </div>
+                  </>
                 );
               })}
           </div>

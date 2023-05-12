@@ -17,6 +17,8 @@ import Info from "./components/AllTradesList/Info";
 import InfoDeals from "./components/MyDeals/InfoDeals";
 import SelectOrders from "./components/TradeList/SelectOrders";
 import ProductionList from "./components/TradeList/ProductionList";
+import BulkMoreInfo from "./components/TradeList/BulkMoreInfo";
+import ProductMoreInfo from "./components/TradeList/ProductMoreInfo";
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
             <Route path="/belgi.kg" element={<Login />} />
             <Route path="/my-trades" element={<MyTrades />} />
             <Route path="/trade-list" element={<TradeList />} />
+            <Route path="/bulk-more-info" element={<BulkMoreInfo />} />
             <Route path="/production-list" element={<ProductionList />} />
+            <Route path="/product-more-info" element={<ProductMoreInfo />} />
             <Route path="/new-order" element={<NewOrder />} />
             <Route path="/select-order" element={<SelectOrders />} />
             <Route path="/bayer-services" element={<BayerServices />} />

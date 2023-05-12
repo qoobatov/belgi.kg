@@ -25,7 +25,7 @@ function SelectOrders() {
           </div>
           <div className="select-role-login-block">
           <button
-              className="select-role-provider"
+              className="select-role-provider-btn"
               onClick={() => navigation("/my-trades")}
             >
               Назад
