@@ -50,7 +50,7 @@ function NewOrder() {
             className="btn-new-order-back"
             onClick={handleClickBack}
           >
-            назад
+            Назад
           </Button>
           {showTradeList && navigate("/my-trades")}
           {showBayerServices && navigate("/bayer-services")}

@@ -78,3 +78,7 @@
 .ant-form .login-remember-me {
   color: var(--tg-theme-text-color);
 }
+
+.anticon svg{
+  color: black;
+}

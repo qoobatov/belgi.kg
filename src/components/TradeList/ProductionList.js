@@ -36,7 +36,7 @@ function ProductionList() {
     <>
       <div className="trade-list-container">
         <div className="trade-list-content">
-          <h3>Заказ на производство:</h3>
+          <h3>Заказы на производство:</h3>
           <div className="trade-more-info-container">
             {production &&
               production.map((data, index) => {
