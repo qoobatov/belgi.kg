@@ -28,10 +28,6 @@ function App() {
           <Routes>
             <Route path="/belgi.kg" element={<Login />} />
             <Route path="/my-trades" element={<MyTrades />} />
-            <Route path="/trade-list" element={<TradeList />} />
-            <Route path="/bulk-more-info" element={<BulkMoreInfo />} />
-            <Route path="/production-list" element={<ProductionList />} />
-            <Route path="/product-more-info" element={<ProductMoreInfo />} />
             <Route path="/new-order" element={<NewOrder />} />
             <Route path="/select-order" element={<SelectOrders />} />
             <Route path="/bayer-services" element={<BayerServices />} />
@@ -48,6 +44,14 @@ function App() {
             <Route path="/mydeals">
               <Route index element={<MyDeals />} />
               <Route path=":id" element={<InfoDeals />} />
+            </Route>
+            <Route path="/trade-list">
+              <Route index element={<TradeList />} />
+              <Route path=":id" element={<BulkMoreInfo />} />
+            </Route>
+            <Route path="/production-list">
+              <Route index element={<ProductionList />} />
+              <Route path=":id" element={<ProductMoreInfo />} />
             </Route>
           </Routes>
         </Router>

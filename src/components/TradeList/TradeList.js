@@ -48,16 +48,16 @@ function TradeList() {
                 return (
                   <>
                     <div key={index + 1} className="trade-list-items-block">
-                      <table>
-                        <td className="td-product-name">{data.ProductName}</td>
-                        <td>{data.ProductDescription}</td>
-                        <td
+                      <div className="container-for-description">
+                        <div className="div-product-name">{data.ProductName}</div>
+                        <div className="div-product-desc">{data.ProductDescription}</div>
+                        <div
                           className="trade-list-more-info-btn"
-                          onClick={() => navigate("/bulk-more-info")}
+                          onClick={() => navigate(`/trade-list/${data.id}`)}
                         >
                           подробнее
-                        </td>
-                      </table>
+                        </div>
+                      </div>
                     </div>
                   </>
                 );

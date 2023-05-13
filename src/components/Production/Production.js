@@ -324,66 +324,68 @@ function Production() {
                 onChange={onChangeSelected}
               />
             </label>
-
-            <label className="production-lable-block">
-              Прикрепить тех. задание или фото:
-              <input
-                type="file"
-                id="production-inputs"
-                name="mediaProduct"
-                onChange={(e) => {
-                  setSelectedFile((selectedFile) => {
-                    return {
-                      ...selectedFile,
-                      file1: e.target.files[0],
-                    };
-                  });
-                }}
-                multiple
-              />
-              <input
-                type="file"
-                id="production-inputs"
-                name="mediaProduct"
-                onChange={(e) => {
-                  setSelectedFile((selectedFile) => {
-                    return {
-                      ...selectedFile,
-                      file2: e.target.files[0],
-                    };
-                  });
-                }}
-                multiple
-              />
-              <input
-                type="file"
-                id="production-inputs"
-                name="mediaProduct"
-                onChange={(e) => {
-                  setSelectedFile((selectedFile) => {
-                    return {
-                      ...selectedFile,
-                      file3: e.target.files[0],
-                    };
-                  });
-                }}
-                multiple
-              />
-              <input
-                type="file"
-                id="production-inputs"
-                name="mediaProduct"
-                onChange={(e) => {
-                  setSelectedFile((selectedFile) => {
-                    return {
-                      ...selectedFile,
-                      file4: e.target.files[0],
-                    };
-                  });
-                }}
-                multiple
-              />
-            </label>
+              <label className="production-lable-block">
+              Прикрепить фотографии:
+                <input
+                  type="file"
+                  id="production-inputs"
+                  name="mediaProduct"
+                  onChange={(e) => {
+                    setSelectedFile((selectedFile) => {
+                      return {
+                        ...selectedFile,
+                        file1: e.target.files[0],
+                      };
+                    });
+                  }}
+                  multiple
+                />
+                <input
+                  type="file"
+                  id="production-inputs"
+                  name="mediaProduct"
+                  onChange={(e) => {
+                    setSelectedFile((selectedFile) => {
+                      return {
+                        ...selectedFile,
+                        file2: e.target.files[0],
+                      };
+                    });
+                  }}
+                  multiple
+                />
+                <input
+                  type="file"
+                  id="production-inputs"
+                  name="mediaProduct"
+                  onChange={(e) => {
+                    setSelectedFile((selectedFile) => {
+                      return {
+                        ...selectedFile,
+                        file3: e.target.files[0],
+                      };
+                    });
+                  }}
+                  multiple
+                />
+                <label htmlFor="production-inputs">
+                  Выбрать документ: (в формате PDF)
+                </label>
+                <input
+                  type="file"
+                  id="production-inputs"
+                  name="mediaProduct"
+                  onChange={(e) => {
+                    setSelectedFile((selectedFile) => {
+                      return {
+                        ...selectedFile,
+                        file4: e.target.files[0],
+                      };
+                    });
+                  }}
+                  multiple
+                />
+              </label>
 
             <button
               type="submit"

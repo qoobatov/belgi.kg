@@ -1,0 +1,31 @@
+.BulkMoreInfo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.BulkMoreInfo-content {
+  width: 330px;
+  max-height: 850px;
+  padding: 10px 5px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+}
+.BulkMoreInfo-title {
+  margin-bottom: 20px;
+}
+
+
+.BulkMoreInfo-btn {
+  height: 40px;
+  font-size: 18px;
+  background-color: #1976d2;
+  border-radius: 5px;
+  padding: 0px 10px;
+  margin-top: 40px;
+  border: none;
+  cursor: pointer;
+}

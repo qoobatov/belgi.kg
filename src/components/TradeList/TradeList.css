@@ -52,13 +52,40 @@
   display: flex;
 }
 
-.td-product-name {
+
+
+
+
+.container-for-description{
   display: flex;
-  margin-bottom: 10px;
+  height: 30px;
+  justify-content: space-between;
 }
+
+.div-product-name{
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.div-product-desc{
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+
+.trade-list-more-info-btn {
+  background-color: #1976d2;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
 .delete-trade-list-item-relative {
   position: relative;
 }
+
+
 .delete-trade-list-item {
   position: absolute;
   right: 3px;
@@ -67,16 +94,6 @@
   background-color: #1976d2;
   cursor: pointer;
   border: none;
-}
-th {
-  overflow: hidden;
-}
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-td {
-  overflow: hidden;
 }
 
 .title-trade-list {
@@ -88,13 +105,8 @@ td {
 .title-name-trade-list {
   margin-right: 60px;
 }
-.trade-list-more-info-btn {
-  background-color: #1976d2;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
-.select-role-provider-btn{
+.select-role-provider-btn {
   height: 40px;
   width: 100%;
   border: none;
@@ -105,34 +117,63 @@ td {
   /* margin-bottom: 10px; */
 }
 
-
-.BulkMoreInfo-container {
+.ProductMoreInfo-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
-.BulkMoreInfo-content {
+.ProductMoreInfo-content {
   width: 330px;
-  max-height: 850px;
+  max-height: 1550px;
   padding: 10px 5px;
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   display: flex;
   flex-direction: column;
+  word-wrap: break-word;
 }
 
-.BulkMoreInfo-title {
-  margin-bottom: 20px;
+.ProductMoreInfo-content p {
+  font-style: italic;
+  color: darkcyan;
 }
 
-.BulkMoreInfo-btn {
+.ProductMoreInfo-photo-files-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ProductMoreInfo-photo-files-content {
+  width: 45%;
+  height: 180px;
+  border: 1px solid #6d6c6c;
+  background-color: rgb(215, 230, 243);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.ProductMoreInfo-photo-files-content img {
+  align-items: center;
+  text-align: center;
+}
+
+.ProductMoreInfo-btn {
   height: 40px;
+  width: 100%;
+  border: none;
   font-size: 18px;
   background-color: #1976d2;
   border-radius: 5px;
-  padding: 0px 10px;
-  margin-top: 40px;
-  border: none;
-  cursor: pointer;
+}
+
+.ProductMoreInfo-title {
+  margin-bottom: 10px;
+}
+
+.photo-tz {
+  margin-bottom: 10px;
 }
