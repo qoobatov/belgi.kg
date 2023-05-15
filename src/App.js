@@ -19,6 +19,11 @@ import SelectOrders from "./components/TradeList/SelectOrders";
 import ProductionList from "./components/TradeList/ProductionList";
 import BulkMoreInfo from "./components/TradeList/BulkMoreInfo";
 import ProductMoreInfo from "./components/TradeList/ProductMoreInfo";
+import AllProductList from "./components/AllTradesList/AllProductionList";
+import InfoProduct from "./components/AllTradesList/InfoProduct";
+import InfoDealsPoduct from "./components/MyDeals/InfoDealsPoduct";
+import DealsProduct from "./components/MyDeals/DealsProduct";
+import SelectDeals from "./components/MyDeals/SelectDeals";
 
 function App() {
   return (
@@ -37,13 +42,22 @@ function App() {
             <Route path="/register-provider" element={<RegisterProvider />} />
             <Route path="/authpage" element={<AuthPage />} />
             <Route path="/businescard" element={<BusinesCard />} />
+            <Route path="/selectDeals" element={<SelectDeals />} />
             <Route path="/allTradesList">
               <Route index element={<AllTradesList />} />
               <Route path=":id" element={<Info />} />
             </Route>
+            <Route path="/allProductList">
+              <Route index element={<AllProductList />} />
+              <Route path=":id" element={<InfoProduct />} />
+            </Route>
             <Route path="/mydeals">
               <Route index element={<MyDeals />} />
               <Route path=":id" element={<InfoDeals />} />
+            </Route>
+            <Route path="/mydealsProducts">
+              <Route index element={<DealsProduct />} />
+              <Route path=":id" element={<InfoDealsPoduct />} />
             </Route>
             <Route path="/trade-list">
               <Route index element={<TradeList />} />

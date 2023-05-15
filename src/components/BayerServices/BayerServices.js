@@ -47,7 +47,7 @@ function BayerServices() {
     } else {
       addBulkProduct(bulk)
         .then((res) => res.json())
-        .then((resp) => localStorage.setItem("xz", resp.data.id + 1));
+        .then((resp) => localStorage.setItem("idBulk", resp.data.id + 1));
 
       const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
       const chat_id = "-1001979905864";
@@ -55,7 +55,7 @@ function BayerServices() {
       const button = {
         text: "Подробнее",
         url: `http://127.0.0.1:3000/allTradesList/${
-          localStorage.getItem("xz") && localStorage.getItem("xz")
+          localStorage.getItem("idBulk") && localStorage.getItem("idBulk")
         }`,
       };
 

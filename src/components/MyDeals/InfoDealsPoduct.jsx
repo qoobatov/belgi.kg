@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getOnlyProductionProduct } from "../api/api";
 
-function ProductMoreInfo() {
+function InfoDealsPoduct() {
   const [productInfo, setProductInfo] = useState();
   const [img, setimg] = useState();
   // eslint-disable-next-line no-restricted-globals
@@ -142,7 +142,7 @@ function ProductMoreInfo() {
             </div>
             <button
               className="ProductMoreInfo-btn"
-              onClick={() => navigate("/production-list")}
+              onClick={() => navigate("/mydealsProducts")}
             >
               Назад
             </button>
@@ -153,4 +153,5 @@ function ProductMoreInfo() {
   );
 }
 
-export default ProductMoreInfo;
+
+export default InfoDealsPoduct;

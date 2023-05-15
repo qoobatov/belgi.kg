@@ -86,10 +86,6 @@ function Production() {
       const fileId2 = uploadResponse.data[1].id;
       const fileId3 = uploadResponse.data[2].id;
       const fileId4 = uploadResponse.data[3].id;
-      console.log(fileId);
-      console.log(fileId2);
-      console.log(fileId3);
-      console.log(fileId4);
 
       setFormValues((formValues) => {
         return {
@@ -98,9 +94,8 @@ function Production() {
         };
       });
 
-      const createResponse = await axios.post(
-        "http://localhost:1337/api/productions",
-        {
+      await axios
+        .post("http://localhost:1337/api/productions", {
           data: {
             ...formValues,
             mediaProduct: fileId,
@@ -108,15 +103,16 @@ function Production() {
             mediaProduct3: fileId3,
             mediaProduct4: fileId4,
           },
-        }
-      );
-      console.log(createResponse.data);
+        })
+        .then((res) => localStorage.setItem("idProduct", res.data.data.id));
 
       const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
       const chat_id = "-1001950653999";
       const button = {
-        text: "test btn",
-        url: `https://t.me/${localStorage.getItem("tg")}`,
+        text: "Подробнее",
+        url: `http://127.0.0.1:3000/allProductList/${
+          localStorage.getItem("idProduct") && localStorage.getItem("idProduct")
+        }`,
       };
 
       const inlineKeyboard = {
@@ -324,68 +320,68 @@ function Production() {
                 onChange={onChangeSelected}
               />
             </label>
-              <label className="production-lable-block">
+            <label className="production-lable-block">
               Прикрепить фотографии:
-                <input
-                  type="file"
-                  id="production-inputs"
-                  name="mediaProduct"
-                  onChange={(e) => {
-                    setSelectedFile((selectedFile) => {
-                      return {
-                        ...selectedFile,
-                        file1: e.target.files[0],
-                      };
-                    });
-                  }}
-                  multiple
-                />
-                <input
-                  type="file"
-                  id="production-inputs"
-                  name="mediaProduct"
-                  onChange={(e) => {
-                    setSelectedFile((selectedFile) => {
-                      return {
-                        ...selectedFile,
-                        file2: e.target.files[0],
-                      };
-                    });
-                  }}
-                  multiple
-                />
-                <input
-                  type="file"
-                  id="production-inputs"
-                  name="mediaProduct"
-                  onChange={(e) => {
-                    setSelectedFile((selectedFile) => {
-                      return {
-                        ...selectedFile,
-                        file3: e.target.files[0],
-                      };
-                    });
-                  }}
-                  multiple
-                />
-                <label htmlFor="production-inputs">
-                  Выбрать документ: (в формате PDF)
-                </label>
-                <input
-                  type="file"
-                  id="production-inputs"
-                  name="mediaProduct"
-                  onChange={(e) => {
-                    setSelectedFile((selectedFile) => {
-                      return {
-                        ...selectedFile,
-                        file4: e.target.files[0],
-                      };
-                    });
-                  }}
-                  multiple
-                />
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file1: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file2: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file3: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+              <label htmlFor="production-inputs">
+                Выбрать документ: (в формате PDF)
               </label>
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file4: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+            </label>
 
             <button
               type="submit"

@@ -1,11 +1,10 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./style.module.sass";
-import { Button } from "antd";
-import { useState } from "react";
-import { useEffect } from "react";
 import { getBulkProduct, getProductionProduct } from "../api/api";
+import { Button } from "antd";
+import styles from "./style.module.sass";
 
-const MyDeals = () => {
+const DealsProduct = () => {
   const [deals, setDeals] = useState();
   const [dealsProduct, setdealsProduct] = useState();
   const redirect = useNavigate();
@@ -27,17 +26,17 @@ const MyDeals = () => {
           </Link>
         </Button>
       </div>
-      <h2 className={styles.deals__title}>Оптовые</h2>
+      <h2 className={styles.deals__title}>Производство</h2>
       <div className={styles.deals__cards}>
-        {deals &&
-          deals.map((item, index) => {
+        {dealsProduct &&
+          dealsProduct.map((item, index) => {
             return (
               <div key={index + Math.random()} className={styles.deals__list}>
-                <h3>{item.ProductName}</h3>
+                <h3>{item.nameOrder}</h3>
 
                 <Button
                   type="primary"
-                  onClick={() => redirect(`/mydeals/${item.id}`)}
+                  onClick={() => redirect(`/mydealsProducts/${item.id}`)}
                   className="btn-mytrades-exit"
                   style={{ width: "150px" }}
                 >
@@ -51,4 +50,4 @@ const MyDeals = () => {
   );
 };
 
-export default MyDeals;
+export default DealsProduct;

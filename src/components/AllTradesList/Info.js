@@ -15,7 +15,7 @@ const Info = () => {
 
   const done = () => {
     redirect("/belgi.kg");
-    localStorage.setItem("idProduct", path);
+    localStorage.setItem("idBulk", path);
     localStorage.removeItem("role");
   };
   return (

@@ -49,12 +49,12 @@ function ProductionList() {
                     <table>
                       <td className="td-product-name">{data.nameOrder}</td>
                       <td>{data.descOrder}</td>
-                      <div
+                      <td
                         className="trade-list-more-info-btn"
                         onClick={() => navigate(`/production-list/${data.id}`)}
                       >
                         подробнее
-                      </div>
+                      </td>
                     </table>
                   </div>
                 );

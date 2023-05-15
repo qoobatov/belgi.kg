@@ -35,6 +35,9 @@ export function deleteBulkProduct(id) {
 export const getAllBulkProduct = () => {
   return strapiApi.get("bulk-buyings").json();
 };
+export const getAllProductionList = () => {
+  return strapiApi.get("productions").json();
+};
 
 export const getOnlyBulkProduct = (id) => {
   return strapiApi.get(`bulk-buyings/${id}`).json();
@@ -45,4 +48,7 @@ export const getOnlyProductionProduct = (id) => {
 
 export const AddBulkProductToProviders = (id, data) => {
   return strapiApi.put(`bulk-buyings/${id}`, { json: { data: data } });
+};
+export const AddProductionProductToProviders = (id, data) => {
+  return strapiApi.put(`productions/${id}`, { json: { data: data } });
 };
