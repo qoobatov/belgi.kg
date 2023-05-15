@@ -148,7 +148,12 @@ function Login() {
           </Form.Item>
         </Form>
         <div className="login-register-block">
-          <span>У вас ещё нет аккаунта?</span>
+          <span
+            className="login-btn-register"
+            onClick={() => navigation("/forgotPass")}
+          >
+            Забыли пароль?
+          </span>
           <span
             onClick={() => navigation("/select-role")}
             className="login-btn-register"

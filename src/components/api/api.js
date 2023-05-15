@@ -52,3 +52,24 @@ export const AddBulkProductToProviders = (id, data) => {
 export const AddProductionProductToProviders = (id, data) => {
   return strapiApi.put(`productions/${id}`, { json: { data: data } });
 };
+
+export const changePassword = async (token, passwordData) => {
+  return await strapiApi
+    .post("auth/change-password", {
+      json: {
+        currentPassword: passwordData.password,
+        password: passwordData.newPassword,
+        passwordConfirmation: passwordData.passwordConfirmation,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .json();
+};
+
+export const forgotPassword = (data) => {
+  return strapiApi.post("auth/forgot-password", {
+    data,
+  });
+};

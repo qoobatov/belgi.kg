@@ -24,6 +24,8 @@ import InfoProduct from "./components/AllTradesList/InfoProduct";
 import InfoDealsPoduct from "./components/MyDeals/InfoDealsPoduct";
 import DealsProduct from "./components/MyDeals/DealsProduct";
 import SelectDeals from "./components/MyDeals/SelectDeals";
+import ForgotPass from "./components/Login/ForgotPass";
+// import ChangePass from "./components/Login/ChangePass";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Router>
           <Routes>
             <Route path="/belgi.kg" element={<Login />} />
+            <Route path="/forgotPass" element={<ForgotPass />} />
+            {/* <Route path="/changePass" element={<ChangePass />} /> */}
             <Route path="/my-trades" element={<MyTrades />} />
             <Route path="/new-order" element={<NewOrder />} />
             <Route path="/select-order" element={<SelectOrders />} />
