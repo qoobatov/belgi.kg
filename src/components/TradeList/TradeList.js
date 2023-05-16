@@ -30,7 +30,7 @@ function TradeList() {
   //   await deleteBulkProduct(id);
   //   window.location.reload();
   // };
-
+console.log(bulkproducts);
   return !bulkproducts ? (
     <Preloader />
   ) : (

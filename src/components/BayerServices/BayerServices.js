@@ -4,15 +4,22 @@ import { Modal } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addBulkProduct } from "../api/api";
+import axios from "axios";
 
 function BayerServices() {
+  const [selectedFile, setSelectedFile] = useState({
+    file1: "",
+    file2: "",
+    file3: "",
+    file4: "",
+  });
+
   const [showNewOrder, setshowNewOrder] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bulk, setBulk] = useState({
     ProductName: "",
     ProductDescription: "",
     users_permissions_users: "",
-    tg: "",
   });
 
   const navigate = useNavigate();
@@ -42,12 +49,57 @@ function BayerServices() {
   const submit = async (e) => {
     e.preventDefault();
 
-    if (!bulk.ProductName || !bulk.ProductDescription) {
+    if (!bulk.ProductName || !bulk.ProductDescription || !selectedFile) {
       alert("Заполните все поля");
     } else {
       addBulkProduct(bulk)
         .then((res) => res.json())
         .then((resp) => localStorage.setItem("idBulk", resp.data.id + 1));
+
+      const formData = new FormData();
+      formData.append("files", selectedFile.file1);
+      formData.append("files", selectedFile.file2);
+      formData.append("files", selectedFile.file3);
+      formData.append("files", selectedFile.file4);
+
+      const uploadResponse = await axios.post(
+        "http://localhost:1337/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          params: {
+            ref: "production",
+            refId: localStorage.getItem("id"),
+            field: "mediaBulk",
+          },
+        }
+      );
+
+      const fileId = uploadResponse.data[0].id;
+      const fileId2 = uploadResponse.data[1].id;
+      const fileId3 = uploadResponse.data[2].id;
+      const fileId4 = uploadResponse.data[3].id;
+
+      setBulk((formValues) => {
+        return {
+          ...formValues,
+          mediaProduction: fileId,
+        };
+      });
+
+      await axios
+        .post("http://localhost:1337/api/productions", {
+          data: {
+            ...bulk,
+            mediaBulk: fileId,
+            mediaBulk2: fileId2,
+            mediaBulk3: fileId3,
+            mediaBulk4: fileId4,
+          },
+        })
+        .then((res) => localStorage.setItem("idProduct", res.data.data.id));
 
       const token = "6059462033:AAHMTNU6CakxUuMjoaiayqgkAN1R-cyxQ-A";
       const chat_id = "-1001979905864";
@@ -115,6 +167,75 @@ function BayerServices() {
                 onChange={changeHandler}
               ></textarea>
             </label>
+
+
+            <label className="production-lable-block">
+              Прикрепить фотографии:
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file1: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file2: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file3: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+              <label htmlFor="production-inputs">
+                Выбрать документ: (в формате PDF)
+              </label>
+              <input
+                type="file"
+                id="production-inputs"
+                name="mediaProduct"
+                onChange={(e) => {
+                  setSelectedFile((selectedFile) => {
+                    return {
+                      ...selectedFile,
+                      file4: e.target.files[0],
+                    };
+                  });
+                }}
+                multiple
+              />
+            </label>
+
+
+
+
+
             <button className="btn-bayer-services-submit">Отправить</button>
           </form>
 

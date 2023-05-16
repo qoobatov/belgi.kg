@@ -48,61 +48,73 @@ const InfoProduct = () => {
     localStorage.removeItem("role");
   };
   return (
-    <div>
-      <h2> Название: {info && info.data.attributes.nameOrder}</h2>
-      <h2> Категория: {info && info.data.attributes.category}</h2>
-      <h2> Описание: {info && info.data.attributes.descOrder}</h2>
-      <h2> Количество: {info && info.data.attributes.quantity}</h2>
-      <h2>
-        Материалы для заказа: {info && info.data.attributes.materialOrder}
-      </h2>
-      <h2>Образец: {info && info.data.attributes.sample}</h2>
-      <h2>Доставка: {info && info.data.attributes.delivery}</h2>
-      <h2>Способ доставки: {info && info.data.attributes.deliveryType}</h2>
-      <h2>
-        Срок выполнения заказа: {info && info.data.attributes.orderDeadline}
-      </h2>
-      <h2>Условия оплаты: {info && info.data.attributes.payment}</h2>
-      <h2>Доп. услуги: {info && info.data.attributes.moreServices}</h2>
-      <h2>Примечания и комментарии: {info && info.data.attributes.comments}</h2>
-      <h2>
-        Фото и тз:{" "}
-        {img &&
-          img.map((data) => {
-            return (
-              <div className="ProductMoreInfo-photo-files-content">
-                {data.file.endsWith(".pdf") ? (
-                  <a
-                    href={data.file}
-                    key={Math.random()}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    Документ PDF
-                  </a>
-                ) : (
-                  <a
-                    href={data.file}
-                    key={Math.random()}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    <img
-                      style={{
-                        width: "120px",
-                        height: "120px",
-                        objectFit: "contain",
-                      }}
-                      src={data.file}
-                      alt=""
-                    />
-                  </a>
-                )}
-              </div>
-            );
-          })}
-      </h2>
-      <button onClick={done}>Принять</button>
+    <div className="ProductMoreInfo-container">
+      <div className="ProductMoreInfo-content">
+        <h4> Название: </h4>
+        <p>{info && info.data.attributes.nameOrder}</p>
+        <h4> Категория: </h4>
+        <p>{info && info.data.attributes.category}</p>
+        <h4> Описание: </h4>
+        <p>{info && info.data.attributes.descOrder}</p>
+        <h4> Количество: </h4>
+        <p>{info && info.data.attributes.quantity}</p>
+        <h4>Материалы для заказа: </h4>
+        <p>{info && info.data.attributes.materialOrder}</p>
+        <h4>Образец:</h4>
+        <p> {info && info.data.attributes.sample}</p>
+        <h4>Доставка: </h4>
+        <p>{info && info.data.attributes.delivery}</p>
+        <h4>Способ доставки: </h4>
+        <p>{info && info.data.attributes.deliveryType}</p>
+        <h4>Срок выполнения заказа: </h4>
+        <p>{info && info.data.attributes.orderDeadline}</p>
+        <h4>Условия оплаты: </h4>
+        <p>{info && info.data.attributes.payment}</p>
+        <h4>Доп. услуги: </h4>
+        <p>{info && info.data.attributes.moreServices}</p>
+        <h4>Примечания и комментарии: </h4>
+        <p>{info && info.data.attributes.comments}</p>
+        <h4>Фото и T/З: </h4> 
+        <div className="ProductMoreInfo-photo-files-block">
+          {img &&
+            img.map((data) => {
+              return (
+                <div className="ProductMoreInfo-photo-files-content">
+                  {data.file.endsWith(".pdf") ? (
+                    <a
+                      href={data.file}
+                      key={Math.random()}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Документ PDF
+                    </a>
+                  ) : (
+                    <a
+                      href={data.file}
+                      key={Math.random()}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <img
+                        style={{
+                          width: "120px",
+                          height: "120px",
+                          objectFit: "contain",
+                        }}
+                        src={data.file}
+                        alt=""
+                      />
+                    </a>
+                  )}
+                </div>
+              );
+            })}
+        </div>
+        <button className="ProductMoreInfo-btn" onClick={done}>
+          Принять
+        </button>
+      </div>
     </div>
   );
 };

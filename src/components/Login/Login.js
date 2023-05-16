@@ -16,7 +16,6 @@ function Login() {
     Provider: "",
   });
   const navigation = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies(["remember"]);
 
   useEffect(() => {
     if (localStorage.getItem("role") === "provider") {
@@ -154,6 +153,7 @@ function Login() {
           >
             Забыли пароль?
           </span>
+          <span>или</span>
           <span
             onClick={() => navigation("/select-role")}
             className="login-btn-register"
