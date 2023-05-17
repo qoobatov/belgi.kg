@@ -6,42 +6,17 @@ import "./BulkMoreInfo.css";
 function BulkMoreInfo() {
   const navigate = useNavigate();
   const [info, setInfo] = useState();
-  const [img, setimg] = useState();
+  // const [img, setimg] = useState();
 
   // eslint-disable-next-line no-restricted-globals
   const path = location.pathname.substring(12);
   useEffect(() => {
     getOnlyBulkProduct(path).then((res) => {
       setInfo(res.data);
-
-      setimg(() => {
-        return [
-          {
-            file:
-              "http://localhost:1337" +
-              res.data.attributes.mediaBulk.data[0].attributes.url,
-          },
-          {
-            file:
-              "http://localhost:1337" +
-              res.data.attributes.mediaBulk2.data[0].attributes.url,
-          },
-          {
-            file:
-              "http://localhost:1337" +
-              res.data.attributes.mediaBulk3.data[0].attributes.url,
-          },
-          {
-            file:
-              "http://localhost:1337" +
-              res.data.attributes.mediaBulk4.data[0].attributes.url,
-          },
-        ];
-      });
     });
   }, []);
 
-  console.log(setInfo);
+  // console.log(setInfo);
 
   return (
     <>
@@ -57,45 +32,6 @@ function BulkMoreInfo() {
               <p className="BulkMoreInfo-desc">
                 {info.attributes.ProductDescription}
               </p>
-            </div>
-            <div className="ProductMoreInfo-title">
-              <h4 className="photo-tz">Фото и Т/З</h4>
-              <div className="ProductMoreInfo-photo-files-block">
-                {img &&
-                  img.map((data) => {
-                    return (
-                      <div className="ProductMoreInfo-photo-files-content">
-                        {data.file.endsWith(".pdf") ? (
-                          <a
-                            href={data.file}
-                            key={Math.random()}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                          >
-                            Документ PDF
-                          </a>
-                        ) : (
-                          <a
-                            href={data.file}
-                            key={Math.random()}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                          >
-                            <img
-                              style={{
-                                width: "120px",
-                                height: "120px",
-                                objectFit: "contain",
-                              }}
-                              src={data.file}
-                              alt=""
-                            />
-                          </a>
-                        )}
-                      </div>
-                    );
-                  })}
-              </div>
             </div>
             <button
               className="BulkMoreInfo-btn"

@@ -30,7 +30,7 @@ function TradeList() {
   //   await deleteBulkProduct(id);
   //   window.location.reload();
   // };
-console.log(bulkproducts);
+  // console.log(bulkproducts);
   return !bulkproducts ? (
     <Preloader />
   ) : (
@@ -40,17 +40,18 @@ console.log(bulkproducts);
           <h3>Ваши оптовые заказы:</h3>
           <div className="trade-more-info-container">
             <div className="title-trade-list">
-              <h4 className="title-name-trade-list">Название</h4>
-              <h4>Описание заказа</h4>
             </div>
             {bulkproducts &&
               bulkproducts.map((data, index) => {
+                // console.log(bulkproducts);
+                
                 return (
                   <>
                     <div key={index + 1} className="trade-list-items-block">
                       <div className="container-for-description">
-                        <div className="div-product-name">{data.ProductName}</div>
-                        <div className="div-product-desc">{data.ProductDescription}</div>
+                        <div  className="div-product-name">
+                          {data.ProductName}
+                        </div>
                         <div
                           className="trade-list-more-info-btn"
                           onClick={() => navigate(`/trade-list/${data.id}`)}

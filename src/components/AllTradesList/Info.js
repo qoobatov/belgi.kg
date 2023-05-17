@@ -20,9 +20,15 @@ const Info = () => {
   };
   return (
     <div>
-      <h2> Название: {info && info.data.attributes.ProductName}</h2>
-      <h2> Описание: {info && info.data.attributes.ProductDescription}</h2>
-      <button onClick={done}>Принять</button>
+      <div className="ProductMoreInfo-container">
+        <div className="ProductMoreInfo-content">
+          <h4> Название </h4>
+          <p>{info && info.data.attributes.ProductName}</p>
+          <h4> Описание</h4>
+          <p>{info && info.data.attributes.ProductDescription}</p> <br />
+          <button className="ProductMoreInfo-btn" onClick={done}>Принять</button>
+        </div>
+      </div>
     </div>
   );
 };

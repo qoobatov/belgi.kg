@@ -41,8 +41,7 @@ function ProductMoreInfo() {
     });
   }, []);
 
-  // console.log(productInfo && productInfo.attributes);
-  console.log(img && img);
+  // console.log(img && img);
 
   const navigate = useNavigate();
 

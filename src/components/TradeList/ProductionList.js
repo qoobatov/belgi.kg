@@ -39,16 +39,13 @@ function ProductionList() {
           <h3>Заказы на производство:</h3>
           <div className="trade-more-info-container">
             <div className="title-trade-list">
-              <h4 className="title-name-trade-list">Название</h4>
-              <h4>Описание заказа</h4>
             </div>
             {production &&
               production.map((data, index) => {
                 return (
                   <div key={index + 1} className="trade-list-items-block">
-                    <table>
+                    <table style={{display: "flex", justifyContent: "space-between"}}>
                       <td className="td-product-name">{data.nameOrder}</td>
-                      <td>{data.descOrder}</td>
                       <td
                         className="trade-list-more-info-btn"
                         onClick={() => navigate(`/production-list/${data.id}`)}
