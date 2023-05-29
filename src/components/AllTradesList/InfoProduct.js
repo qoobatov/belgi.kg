@@ -40,7 +40,6 @@ const InfoProduct = () => {
     });
   }, []);
 
-  console.log(info);
 
   const done = () => {
     redirect("/belgi.kg");
@@ -64,6 +63,8 @@ const InfoProduct = () => {
         <p> {info && info.data.attributes.sample}</p>
         <h4>Доставка: </h4>
         <p>{info && info.data.attributes.delivery}</p>
+        <h4>Страна: </h4>
+        <p>{info && info.data.attributes.country}</p>
         <h4>Способ доставки: </h4>
         <p>{info && info.data.attributes.deliveryType}</p>
         <h4>Срок выполнения заказа: </h4>

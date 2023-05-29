@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-// import axios from "axios";
 import { Form, Input, Button, Checkbox } from "antd";
-import { AddBulkProductToProviders, loginUser } from "../api/api";
+import { loginUser } from "../api/api";
 
 function Login() {
   const [error, setError] = useState(false);
@@ -146,7 +144,7 @@ function Login() {
             </Button>
           </Form.Item>
         </Form>
-        <div className="login-register-block">
+        {/* <div className="login-register-block">
           <span
             className="login-btn-register"
             onClick={() => navigation("/forgotPass")}
@@ -160,7 +158,7 @@ function Login() {
           >
             Зарегистрироваться
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

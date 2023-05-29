@@ -15,7 +15,7 @@ function Register() {
     city: "",
     address: "",
     nameCompany: "",
-    offert: false,
+    offert: false,  // if false then user is costumer
     password: "",
     pass: "",
     roleProvider: false,

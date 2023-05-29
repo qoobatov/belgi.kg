@@ -40,7 +40,7 @@ export const getAllProductionList = () => {
 };
 
 export const getOnlyBulkProduct = (id) => {
-  return strapiApi.get(`bulk-buyings/${id}`).json();
+  return strapiApi.get(`bulk-buyings/${id}?populate=*`).json();
 };
 export const getOnlyProductionProduct = (id) => {
   return strapiApi.get(`productions/${id}?populate=*`).json();

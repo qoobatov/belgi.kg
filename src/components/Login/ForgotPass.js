@@ -1,34 +1,100 @@
 import React, { useState } from "react";
-import { forgotPassword } from "../api/api";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
-function ForgotPass() {
-  const [email, setEmail] = useState("");
-  const navigate = useNavigate()
+const ForgotPass = () => {
+  const [alert, setAlert] = useState();
 
-  const change = (event) => {
-    setEmail(event.target.value);
+  const initialValues = {
+    email: "",
+  };
+
+  const validationSchema = Yup.object({
+    email: Yup.string().email("Insert a valid email").required("Required"),
+  });
+
+  const onSubmit = (values, { setSubmitting, resetForm }) => {
+    setAlert();
+
+    axios
+      .post("http://localhost:1337/api/auth/forgot-password", values)
+      .then((response) => {
+        const message = `Please check your email to reset your password.`;
+        setAlert(["success", message]);
+
+        resetForm();
+      })
+      .catch((error) => {
+        if (!error.response.data.message) {
+          setAlert(["alert", "Something went wrong"]);
+        } else {
+          const messages = error.response.data.message[0].messages;
+
+          const list = [];
+          messages.map((message, i) => {
+            let item = "";
+            if (i === 0) item += `<ul>`;
+
+            item += `<li>${message.id}</li>`;
+
+            if (i === messages.length - 1) item += `</ul>`;
+            list.push(item);
+          });
+
+          setAlert(["alert", list]);
+        }
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   };
 
   return (
     <>
-      <div className="login-container">
-        <div className="login-content">
-          <h2>Введите свой email</h2> <br />
-          <form
-            action=""
-            onSubmit={(e) => {
-              e.preventDefault();
-              forgotPassword(email);
-            }}
-          >
-              <input type="email" onChange={change} id="production-inputs" style={{marginBottom:"15px"}} required autoComplete="off"/>
-            <button className="btn-production-send-form" style={{border:"none"}} onClick={()=>navigate('/belgi.kg')}>Отправить</button>
-          </form>
+      <h1>Forgot password</h1>
+      <hr />
+      {alert && (
+        <div
+          style={{
+            backgroundColor:
+              alert[0] === "success" ? "lightgreen" : "lightcoral",
+          }}
+        >
+          <div dangerouslySetInnerHTML={{ __html: alert[1] }} />
         </div>
-      </div>
+      )}
+      <br />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+
+        {({ isSubmitting, isValid }) => (
+          <Form>
+            <div>
+              <div>
+                <label htmlFor="email">Email</label>
+              </div>
+              <Field type="email" id="email" name="email" placeholder="Email" />
+              <div className="error">
+                <ErrorMessage name="email" />
+              </div>
+            </div>
+
+            <br />
+
+            <button type="submit" disabled={!isValid}>
+              {!isSubmitting ? "Отправить" : "Отправка..."}
+            </button>
+          </Form>
+        )}
+      </Formik>
+
+      
     </>
   );
-}
+};
 
 export default ForgotPass;

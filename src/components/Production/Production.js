@@ -14,7 +14,7 @@ function Production() {
 
   const [showNewOrder, setshowNewOrder] = useState(false);
   const navigate = useNavigate();
-  
+
   const [formValues, setFormValues] = useState({
     nameOrder: "",
     category: "Женская одежда",
@@ -23,6 +23,7 @@ function Production() {
     materialOrder: "Предоставляет заказчик",
     sample: "Предоставляет заказчик",
     delivery: "Заказчик",
+    country: "",
     deliveryType: "-",
     orderDeadline: "",
     payment: "",
@@ -57,6 +58,7 @@ function Production() {
       !formValues.orderDeadline ||
       !formValues.payment ||
       !formValues.moreServices ||
+      !formValues.country ||
       !formValues.comments ||
       !selectedFile
     ) {
@@ -135,24 +137,26 @@ function Production() {
             formValues.category +
             "\n<b><i>Описание заказа:</i></b>  " +
             formValues.descOrder +
-            // "\n<b><i>Количество:</i></b>  " +
-            // formValues.quantity +
-            // "\n<b><i>Материалы для заказа:</i></b>  " +
-            // formValues.materialOrder +
-            // "\n<b><i>Образец:</i></b>  " +
-            // formValues.sample +
-            // "\n<b><i>Доставка:</i></b>  " +
-            // formValues.delivery +
-            // "\n<b><i>Способ доставки:</i></b>  " +
-            // formValues.deliveryType +
-            // "\n<b><i>Срок выполнения заказа:</i></b>  " +
-            // formValues.orderDeadline +
-            // "\n<b><i>Условия оплаты:</i></b>  " +
-            // formValues.payment +
-            // "\n<b><i>Дополнительные услуги:</i></b>  " +
-            // formValues.moreServices +
-            // "\n<b><i>Примечания и комментарии:</i></b>  " +
-            // formValues.comments +
+            "\n<b><i>Количество:</i></b>  " +
+            formValues.quantity +
+            "\n<b><i>Материалы для заказа:</i></b>  " +
+            formValues.materialOrder +
+            "\n<b><i>Образец:</i></b>  " +
+            formValues.sample +
+            "\n<b><i>Доставка:</i></b>  " +
+            formValues.delivery +
+            "\n<b><i>Страна:</i></b>  " +
+            formValues.country +
+            "\n<b><i>Способ доставки:</i></b>  " +
+            formValues.deliveryType +
+            "\n<b><i>Срок выполнения заказа:</i></b>  " +
+            formValues.orderDeadline +
+            "\n<b><i>Условия оплаты:</i></b>  " +
+            formValues.payment +
+            "\n<b><i>Дополнительные услуги:</i></b>  " +
+            formValues.moreServices +
+            "\n<b><i>Примечания и комментарии:</i></b>  " +
+            formValues.comments +
             // "\n<b><i>Прикрепленные фото:</i></b>  " +
             // formValues.mediaProduct +
             "\n"
@@ -180,6 +184,8 @@ function Production() {
                 name="nameOrder"
                 onChange={onChangeSelected}
                 required
+                maxLength="100"
+
               />
             </label>
             <label className="production-lable-block">
@@ -199,13 +205,14 @@ function Production() {
             <label className="production-lable-block">
               Описание заказа:
               <textarea
-                cols={10}
-                rows={5}
+                style={{ width: "100%", height: "150px" }}
                 id="production-inputs"
                 className="production-descripton"
                 placeholder="Н: Характеристики изделия/материала"
                 name="descOrder"
                 onChange={onChangeSelected}
+                maxLength="500"
+
               />
             </label>
             <label className="production-lable-block">
@@ -216,6 +223,8 @@ function Production() {
                 className="production-descripton"
                 name="quantity"
                 onChange={onChangeSelected}
+                maxLength="50"
+
               />
             </label>
             <label className="production-lable-block">
@@ -263,6 +272,21 @@ function Production() {
                 <option value="По договоренности">По договоренности</option>
               </select>
             </label>
+
+            <label className="production-lable-block">
+              Страна:
+              <input
+                type="text"
+                id="production-inputs"
+                className="production-payment"
+                name="country"
+                onChange={onChangeSelected}
+                placeholder=""
+                maxLength="100"
+
+              />
+            </label>
+
             <label className="production-lable-block">
               Способ доставки:
               <select
@@ -297,6 +321,7 @@ function Production() {
                 name="payment"
                 onChange={onChangeSelected}
                 placeholder="Н: предоплата, постоплата и т.д."
+                maxLength="100"
               />
             </label>
 
@@ -309,18 +334,23 @@ function Production() {
                 name="moreServices"
                 onChange={onChangeSelected}
                 placeholder="Н: упаковка, маркировка и т.д."
+                maxLength="100"
+
               />
             </label>
 
             <label className="production-lable-block">
               Примечания и комментарии:
               <textarea
+                style={{ width: "100%", height: "100px", resize: "none" }}
                 id="production-inputs"
                 className="production-comments"
                 name="comments"
                 onChange={onChangeSelected}
+                maxLength="500"
               />
             </label>
+
             <label className="production-lable-block">
               Прикрепить фотографии:
               <input

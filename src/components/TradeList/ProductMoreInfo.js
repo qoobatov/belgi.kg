@@ -79,6 +79,10 @@ function ProductMoreInfo() {
               <p>{productInfo.attributes.delivery}</p>
             </div>
             <div className="ProductMoreInfo-title">
+              <h4>Страна</h4>
+              <p>{productInfo.attributes.country}</p>
+            </div>
+            <div className="ProductMoreInfo-title">
               <h4>Способ доставки</h4>
               <p>{productInfo.attributes.deliveryType}</p>
             </div>

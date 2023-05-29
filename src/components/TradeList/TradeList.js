@@ -43,8 +43,6 @@ function TradeList() {
             </div>
             {bulkproducts &&
               bulkproducts.map((data, index) => {
-                // console.log(bulkproducts);
-                
                 return (
                   <>
                     <div key={index + 1} className="trade-list-items-block">
