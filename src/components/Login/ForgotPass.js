@@ -18,7 +18,7 @@ const ForgotPass = () => {
     setAlert();
 
     axios
-      .post("http://localhost:1337/api/auth/forgot-password", values)
+      .post("https://strapi.belgi.kg/api/auth/forgot-password", values)
       .then((response) => {
         const message = `Please check your email to reset your password.`;
         setAlert(["success", message]);

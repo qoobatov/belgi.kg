@@ -14,27 +14,27 @@ function BulkMoreInfo() {
   useEffect(() => {
     getOnlyBulkProduct(path).then((res) => {
       setInfo(res.data);
-      console.log(res.data);
+      // console.log(res.data);
       setImg(() => {
         return [
           {
             file:
-              "http://localhost:1337" +
+              "https://strapi.belgi.kg" +
               res.data.attributes.mediaBulk.data[0].attributes.url,
           },
           {
             file:
-              "http://localhost:1337" +
+              "https://strapi.belgi.kg" +
               res.data.attributes.mediaBulk2.data[0].attributes.url,
           },
           {
             file:
-              "http://localhost:1337" +
+              "https://strapi.belgi.kg" +
               res.data.attributes.mediaBulk3.data[0].attributes.url,
           },
           {
             file:
-              "http://localhost:1337" +
+              "https://strapi.belgi.kg" +
               res.data.attributes.mediaBulk4.data[0].attributes.url,
           },
         ];

@@ -71,7 +71,7 @@ function Production() {
       formData.append("files", selectedFile.file4);
 
       const uploadResponse = await axios.post(
-        "http://localhost:1337/api/upload",
+        "https://strapi.belgi.kg/api/upload",
         formData,
         {
           headers: {
@@ -98,7 +98,7 @@ function Production() {
       });
 
       await axios
-        .post("http://localhost:1337/api/productions", {
+        .post("https://strapi.belgi.kg/api/productions", {
           data: {
             ...formValues,
             mediaProduct: fileId,
@@ -113,7 +113,7 @@ function Production() {
       const chat_id = "-1001950653999";
       const button = {
         text: "Подробнее",
-        url: `http://127.0.0.1:3000/allProductList/${
+        url: `https://strapi.belgi.kg/allProductList/${
           localStorage.getItem("idProduct") && localStorage.getItem("idProduct")
         }`,
       };

@@ -1,6 +1,6 @@
 import ky from "ky";
 
-const strapiApi = ky.create({ prefixUrl: "http://localhost:1337/api/" });
+const strapiApi = ky.create({ prefixUrl: "https://strapi.belgi.kg/api/" });
 
 export function authUsers() {
   return strapiApi.get("users").json();

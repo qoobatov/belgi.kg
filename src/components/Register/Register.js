@@ -3,7 +3,6 @@ import "./Register.css";
 import { useState } from "react";
 import { addUsers } from "../api/api";
 import { useNavigate } from "react-router-dom";
-import Preloader from "../Preloader/Preloader";
 
 function Register() {
   const navigation = useNavigate();
@@ -15,10 +14,10 @@ function Register() {
     city: "",
     address: "",
     nameCompany: "",
-    offert: false,  // if false then user is costumer
+    offert: false,  
     password: "",
     pass: "",
-    roleProvider: false,
+    roleProvider: false, // if false then user is costumer
   });
 
   const changeHandler = (event) => {

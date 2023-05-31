@@ -18,22 +18,22 @@ function ProductMoreInfo() {
         return [
           {
             file:
-              "http://localhost:1337" +
+              "https://strapi.belgi.kg" +
               res.data.attributes.mediaProduct.data[0].attributes.url,
           },
           {
             file:
-              "http://localhost:1337" +
+              "https://strapi.belgi.kg" +
               res.data.attributes.mediaProduct2.data[0].attributes.url,
           },
           {
             file:
-              "http://localhost:1337" +
+              "https://strapi.belgi.kg" +
               res.data.attributes.mediaProduct3.data[0].attributes.url,
           },
           {
             file:
-              "http://localhost:1337" +
+              "https://strapi.belgi.kg" +
               res.data.attributes.mediaProduct4.data[0].attributes.url,
           },
         ];

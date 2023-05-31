@@ -15,7 +15,7 @@ function MyTrades() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:1337/api/users");
+        const response = await fetch("https://strapi.belgi.kg/api/users");
   
         if (!response.ok) {
           throw new Error("Ошибка при получении данных");
@@ -33,8 +33,8 @@ function MyTrades() {
   
             const { subscription } = user;
   
-            console.log("ID пользователя:", storedId);
-            console.log("Дата окончания подписки:", subscription);
+            // console.log("ID пользователя:", storedId);
+            // console.log("Дата окончания подписки:", subscription);
   
             const currentDate = new Date();
             const subscriptionDate = new Date(subscription);

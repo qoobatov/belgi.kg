@@ -26,7 +26,7 @@ function AuthPage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:1337/api/users");
+        const response = await fetch("https://strapi.belgi.kg/api/users");
   
         if (!response.ok) {
           throw new Error("Ошибка при получении данных");

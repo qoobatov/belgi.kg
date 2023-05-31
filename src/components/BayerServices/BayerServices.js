@@ -59,7 +59,7 @@ function BayerServices() {
       formData.append("files", selectedFile.file4);
 
       const uploadResponse = await axios.post(
-        "http://localhost:1337/api/upload",
+        "https://strapi.belgi.kg/api/upload",
         formData,
         {
           headers: {
@@ -79,7 +79,7 @@ function BayerServices() {
       const fileId4 = uploadResponse.data[3].id;
 
       await axios
-        .post("http://localhost:1337/api/bulk-buyings", {
+        .post("https://strapi.belgi.kg/api/bulk-buyings", {
           data: {
             ...bulk,
             mediaBulk: fileId,
@@ -115,7 +115,7 @@ function BayerServices() {
 
       const button = {
         text: "Подробнее",
-        url: `http://127.0.0.1:3000/allTradesList/${
+        url: `https://strapi.belgi.kg/allTradesList/${
           localStorage.getItem("idBulk") && localStorage.getItem("idBulk")
         }`,
       };
